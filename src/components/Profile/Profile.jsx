@@ -4,9 +4,9 @@ import MyPosts from './MyPosts/MyPosts';
 
 const Profile = () => {
   return (
-    <div className={s.content}>
+    <div>
       <div>
-        <img src='https://melmagazine.com/wp-content/uploads/2019/01/vapormall-1280x533.jpg' width='1200'></img>
+        <img src='https://www.catsmob.com/post/2012/06/01089/creative_facebook_timeline_covers_023.jpg' width='1200'></img>
       </div>
       <div>
         <img src='https://cutecatshq.com/wp-content/uploads/2017/03/citty-puss.jpg' width='200px'></img>
