@@ -18,10 +18,8 @@
 
 .messages {
   padding: 10px;
-  border-color: #fc5200;
 }
 
 .messages .message {
-  border-color: #fc5200;
-  border-width: 2px;
+  
 }

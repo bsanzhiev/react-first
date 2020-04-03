@@ -19,7 +19,7 @@ const App = (props) => { // эта функция и есть КОМПОНЕНТ
         <Navbar />
         <div className='app-wrapper-content'>
           <Route path='/profile' component={Profile} />
-          <Route path='/dialogs' component={Dialogs} />
+          <Route exact path='/dialogs' component={Dialogs} />
           <Route path='/news' component={News} />
           <Route path='/music' component={Music} />
           <Route path='/settings' component={Settings} />
