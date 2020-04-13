@@ -40,16 +40,16 @@ const Dialogs = (props) => {
       <div className={s.dialogsItems}>
         <DialogItem name={dD[0].name} id={dD[0].id} />
         <DialogItem name={dD[1].name} id={dD[1].id} />
-        <DialogItem name='Viktor' id='3' />
-        <DialogItem name='Jason' id='4' />
-        <DialogItem name='Abraham' id='5' />
+        <DialogItem name={dD[2].name} id={dD[2].id} />
+        <DialogItem name={dD[3].name} id={dD[3].id} />
+        <DialogItem name={dD[4].name} id={dD[4].id} />
       </div>
 
       <div className={s.messages}>
         <Message text={mD[0].message} />
         <Message text={mD[1].message} />
-        <Message text='Wasap! How your current React progress?' />
-        <Message text='Very low. Im just started learning)))' />
+        <Message text={mD[2].message} />
+        <Message text={mD[3].message} />
       </div>
     </div>
   )
