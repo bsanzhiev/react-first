@@ -5,7 +5,7 @@ import s from './Dialogs.module.css';
 
 const Dialogs = () => {
 
-  let dialogs = [ //Array of dialogs data
+  /*let dialogs = [ //Array of dialogs data
     {id: 1, name: 'Bator'},
     {id: 2, name: 'Irina'},
     {id: 3, name: 'Viktor'},
@@ -18,13 +18,13 @@ const Dialogs = () => {
     {id: 2, message: 'Yo'},
     {id: 3, message: 'Wasap! How your current React progress?'},
     {id: 4, message: 'Very low. Im just started learning)))'},
-  ]
+  ]*/
 
   // eslint-disable-next-line react/jsx-key
-  let dialogsElements = dialogs.map( d => <DialogItem name={d.name} id={d.id}/>)
+  let dialogsElements = this.dialogs.d.map( d => <DialogItem name={d.name} id={d.id}/>)
 
   // eslint-disable-next-line react/jsx-key
-  let messagesElements = messages.map( m => <Message message={m.message}/>);
+  let messagesElements = this.messages.map( m => <Message message={m.message}/>);
 
   return (
     <div className={s.dialogs}>
@@ -33,7 +33,7 @@ const Dialogs = () => {
       </div>
 
       <div className={s.messages}>
-        { messagesElements }
+      { messagesElements }
       </div>
     </div>
   )
