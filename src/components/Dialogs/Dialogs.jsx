@@ -1,30 +1,22 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/jsx-key */
 import React from 'react';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
 import s from './Dialogs.module.css';
 
-const Dialogs = () => {
-
-  /*let dialogs = [ //Array of dialogs data
-    {id: 1, name: 'Bator'},
-    {id: 2, name: 'Irina'},
-    {id: 3, name: 'Viktor'},
-    {id: 4, name: 'Jason'},
-    {id: 5, name: 'Abraham'}
-  ]
-
-  let messages = [ //Array of messages data
-    {id: 1, message: 'Hi'},
-    {id: 2, message: 'Yo'},
-    {id: 3, message: 'Wasap! How your current React progress?'},
-    {id: 4, message: 'Very low. Im just started learning)))'},
-  ]*/
+const Dialogs = (props) => {
 
   // eslint-disable-next-line react/jsx-key
-  let dialogsElements = this.dialogs.d.map( d => <DialogItem name={d.name} id={d.id}/>)
+  let dialogsElements = props.dialogs.map (
+    // eslint-disable-next-line react/jsx-key
+    d => <DialogItem name={d.name} id={d.id}/>
+  );
 
   // eslint-disable-next-line react/jsx-key
-  let messagesElements = this.messages.map( m => <Message message={m.message}/>);
+  let messagesElements = props.messages.map (
+    m => <Message message={m.message}/>
+  );
 
   return (
     <div className={s.dialogs}>
