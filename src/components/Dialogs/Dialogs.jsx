@@ -8,13 +8,13 @@ import s from './Dialogs.module.css';
 const Dialogs = (props) => {
 
   // eslint-disable-next-line react/jsx-key
-  let dialogsElements = props.dialogs.map (
+  let dialogsElements = props.state.dialogs.map (
     // eslint-disable-next-line react/jsx-key
     d => <DialogItem name={d.name} id={d.id}/>
   );
 
   // eslint-disable-next-line react/jsx-key
-  let messagesElements = props.messages.map (
+  let messagesElements = props.state.messages.map (
     m => <Message message={m.message}/>
   );
 
