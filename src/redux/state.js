@@ -20,7 +20,8 @@ let state = {
       { id: 3, message: 'Wasap! How your current React progress?' },
       { id: 4, message: 'Very low. Im just started learning)))' },
     ]
-  }
+  },
+  sidebar: {}
 }
 
 export default state;
