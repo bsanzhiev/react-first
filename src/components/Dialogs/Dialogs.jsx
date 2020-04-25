@@ -7,6 +7,12 @@ import s from './Dialogs.module.css';
 
 const Dialogs = (props) => {
 
+  let newMessageElement = React.createRef();
+
+  let addMessage = () => {
+    let text = newMessageElement.current.value;
+    alert(text);
+  }
   // eslint-disable-next-line react/jsx-key
   let dialogsElements = props.state.dialogs.map (
     // eslint-disable-next-line react/jsx-key
@@ -24,8 +30,14 @@ const Dialogs = (props) => {
         { dialogsElements }
       </div>
 
-      <div className={s.messages}>
-      { messagesElements }
+      <div>
+        <div className={s.messages}>
+          { messagesElements }
+        </div>
+        <div className={s.sendMessage}>
+        <textarea ref={newMessageElement}></textarea>
+        <button onClick={ addMessage }>Send</button>
+      </div>
       </div>
     </div>
   )

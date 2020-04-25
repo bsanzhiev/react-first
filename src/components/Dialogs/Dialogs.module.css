@@ -23,7 +23,15 @@
 
 .messages {
   padding: 10px;
+  position:relative;
+  padding-bottom:50px;
 }
 
 .messages .message {
+}
+
+.sendMessage {
+  position: sticky;
+  bottom: 0px;
+  padding: 10px;
 }
