@@ -12,12 +12,15 @@ const MyPosts = (props) => {
 
   let newPostElement = React.createRef();
 
-  let addPost = () => {
+  // тут немного не понял, перенес этот addPost в state.js и не 
+  //работало. Можно ли и самом деле убрать этот код в стейт?
+  //ясно, это не тот же самый addPost, к примеру, addShitPost
+  let addShitPost = () => { //было addPost
     let text = newPostElement.current.value;
     // eslint-disable-next-line react/prop-types
     props.addPost(text);
     newPostElement.current.value = '';
-  }
+  };
 
   return (
     <div className={s.postBlock}>
@@ -27,7 +30,7 @@ const MyPosts = (props) => {
           <textarea ref={newPostElement}></textarea>
         </div>
         <div>
-          <button onClick={ addPost }>Add post</button>
+          <button onClick={ addShitPost }>Add post</button>
         </div>
       </div>
       <div>
