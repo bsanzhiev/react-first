@@ -11,7 +11,8 @@ const Dialogs = (props) => {
 
   let addMessage = () => {
     let text = newMessageElement.current.value;
-    alert(text);
+    props.addMessage(text);
+    newMessageElement.current.value = '';
   }
   // eslint-disable-next-line react/jsx-key
   let dialogsElements = props.state.dialogs.map (
