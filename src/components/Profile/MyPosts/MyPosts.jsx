@@ -14,7 +14,9 @@ const MyPosts = (props) => {
 
   let addPost = () => {
     let text = newPostElement.current.value;
-    alert(text);
+    // eslint-disable-next-line react/prop-types
+    props.addPost(text);
+    newPostElement.current.value = '';
   }
 
   return (

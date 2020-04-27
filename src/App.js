@@ -10,7 +10,6 @@ import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 
-
 // This is JSX?
 const App = (props) => { // эта функция и есть КОМПОНЕНТА
 
@@ -20,7 +19,7 @@ const App = (props) => { // эта функция и есть КОМПОНЕНТ
         <Header />
         <Navbar />
         <div className='app-wrapper-content'>
-          <Route path='/profile' render={() => <Profile state={props.state.profilePage} />} />
+          <Route path='/profile' render={() => <Profile state={props.state.profilePage} addPost={props.addPost}/>} />
           <Route path='/dialogs' render={() => <Dialogs state={props.state.dialogsPage} />} />
           <Route exact path='/news' component={News} />
           <Route path='/music' component={Music} />
