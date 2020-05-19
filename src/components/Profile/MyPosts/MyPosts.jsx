@@ -12,13 +12,11 @@ const MyPosts = (props) => {
 
   let newPostElement = React.createRef();
 
-  // тут немного не понял, перенес этот addPost в state.js и не 
-  //работало. Можно ли и самом деле убрать этот код в стейт?
-  //ясно, это не тот же самый addPost, к примеру, addShitPost
+  //props.addShitPost()
   let addShitPost = () => { //было addPost
     let text = newPostElement.current.value;
     // eslint-disable-next-line react/prop-types
-    props.addPost(text);
+    props.state.store.addPost(text);
     newPostElement.current.value = '';
   };
 
