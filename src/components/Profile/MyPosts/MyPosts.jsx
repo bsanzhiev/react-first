@@ -5,18 +5,18 @@ import Post from './Post/Post';
 const MyPosts = (props) => {
 
   // eslint-disable-next-line react/jsx-key
-  // eslint-disable-next-line react/prop-types
-  let postsElements = props.posts.map (
-    p => <Post message={p.message} key={p.id} likes={p.likes} />
+  let postsElements = props.store.posts.map (
+    p => {
+      return <Post message={p.message} key={p.id} likes={p.likes} />;
+    }
   );
 
   let newPostElement = React.createRef();
 
-  //props.addShitPost()
   let addShitPost = () => { //было addPost
     let text = newPostElement.current.value;
     // eslint-disable-next-line react/prop-types
-    props.state.store.addPost(text);
+    props.store.addPost(text);
     newPostElement.current.value = '';
   };
 

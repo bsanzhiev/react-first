@@ -4,18 +4,18 @@ import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { store } from './redux/state';
+import store from './redux/state';
 
-//addPost('Bator best React fronteder!')
-let rerenderEntireTree = (store) => {
+store.addPost('Best React');
+let rerenderEntireTree = () => {
   ReactDOM.render(
     <BrowserRouter>
-      <App store={ store }/>
+      <App state={store.getState()} />
     </BrowserRouter>, document.getElementById('root'));
 }
 
-store.subscribe(rerenderEntireTree);
+rerenderEntireTree(store.getState());
 
-rerenderEntireTree(store);
+store.subscribe(rerenderEntireTree);
 
 serviceWorker.unregister();

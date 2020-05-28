@@ -1,14 +1,10 @@
-export let store = {
-
-  rerenderEntireTree() {
-    console.log('State was changed');
-  },
+let store = {
 
   subscribe(observer) {
     this.rerenderEntireTree = observer;
   },
 
-  state: {
+  _state: {
     profilePage: {
       posts: [ // arrays of Posts Data
         { id: 1, message: 'Hi. How are you?', likes: 13 },
@@ -34,16 +30,26 @@ export let store = {
     sidebar: {}
   },
 
-  addPost(postMessage) {
+  getState() {
+    return this._state;
+  },
+
+  rerenderEntireTree() {
+    console.log('State was changed');
+  },
+
+  addPost() {
     let newPost = {
       id: 5,
-      message: postMessage,
+      message: this._state.profilePage.posts,
       likes: 0
     };
 
-    this.posts.push(newPost);
+    this._state.profilePage.posts.push(newPost);
 
-    this.rerenderEntireTree();
+    this._state.profilePage.newPostText = '';
+
+    this.rerenderEntireTree(this._state);
   },
 
   addMessage(addNewMessage) {
@@ -55,6 +61,8 @@ export let store = {
     this.state.dialogsPage.messages.push(newMessage);
 
     this.rerenderEntireTree();
-  }
+  },
 
 };
+
+export default store;

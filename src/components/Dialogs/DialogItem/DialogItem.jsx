@@ -8,7 +8,7 @@ const DialogItem = (dialogs) => {
   return (
     <div className={s.dialog + ' '+ s.active}>
       <NavLink to={path}>
-        <img src='https://c7.hotpng.com/preview/348/800/890/computer-icons-avatar-user-login-avatar-thumbnail.jpg'></img>
+        <img alt='icon' src='https://c7.hotpng.com/preview/348/800/890/computer-icons-avatar-user-login-avatar-thumbnail.jpg'></img>
         {dialogs.name}
       </NavLink>
     </div>
