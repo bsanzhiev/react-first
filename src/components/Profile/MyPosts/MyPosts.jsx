@@ -3,8 +3,8 @@ import s from './MyPosts.module.css';
 import Post from './Post/Post';
 
 const MyPosts = (props) => {
-  // eslint-disable-next-line react/jsx-key
-  let postsElements = props.store.profilePage.posts.map (
+
+  let postsElements = props.posts.map (
     p => {
       return <Post message={p.message} key={p.id} likes={p.likes} />;
     }
@@ -14,7 +14,7 @@ const MyPosts = (props) => {
 
   let addShitPost = () => { //было addPost
     let text = newPostElement.current.value;
-    // eslint-disable-next-line react/prop-types
+
     props.addPost(text);
     newPostElement.current.value = '';
   };
