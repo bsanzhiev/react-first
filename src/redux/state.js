@@ -1,17 +1,15 @@
 let store = {
 
-  subscribe(observer) {
-    this.rerenderEntireTree = observer;
-  },
-
   _state: {
     profilePage: {
       posts: [ // arrays of Posts Data
         { id: 1, message: 'Hi. How are you?', likes: 13 },
         { id: 2, message: 'Its my first post!', likes: 17 },
         { id: 3, message: 'I like vaporwave', likes: 22 }
-      ]
+      ],
+      newPostText: 'React is awesome!'
     },
+
     dialogsPage: {
       dialogs: [ //Array of dialogs data
         { id: 1, name: 'Bator' },
@@ -27,6 +25,7 @@ let store = {
         { id: 4, message: 'Very low. Im just started learning)))' },
       ]
     },
+
     sidebar: {}
   },
 
@@ -34,7 +33,7 @@ let store = {
     return this._state;
   },
 
-  rerenderEntireTree() {
+  _callSubscriber() {
     console.log('State was changed');
   },
 
@@ -49,7 +48,7 @@ let store = {
 
     this._state.profilePage.newPostText = '';
 
-    this.rerenderEntireTree(this._state);
+    this._callSubscriber(this._state);
   },
 
   addMessage(addNewMessage) {
@@ -60,8 +59,18 @@ let store = {
 
     this.state.dialogsPage.messages.push(newMessage);
 
-    this.rerenderEntireTree();
+    this._callSubscriber(this._state);
   },
+
+// этого кода не было. В каком уроке я пропустил?
+  updateNewPostText(newText) {
+    this._state.profilePage.newPostText = newText;
+    this._callSubscriber(this._state);
+  },
+
+  subscribe(observer) {
+    this._callSubscriber = observer;
+  }
 
 };
 

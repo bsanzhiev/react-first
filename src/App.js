@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import './App.css';
@@ -11,23 +10,19 @@ import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 
 // This is JSX?
-const App = (props) => { // эта функция и есть КОМПОНЕНТА
-
-  return ( // скобки стоят потому что следующмй код перенесен на новую строку
-    <BrowserRouter>
-      <div className='app-wrapper'>
-        <Header />
-        <Navbar />
-        <div className='app-wrapper-content'>
-          <Route path='/profile' render={() => <Profile store={props.store}/>} />
-          <Route path='/dialogs' render={() => <Dialogs state={props.state.dialogsPage} addMessage={props.addMessage} />} />
-          <Route exact path='/news' component={News} />
-          <Route path='/music' component={Music} />
-          <Route path='/settings' component={Settings} />
-        </div>
+const App = (props) => ( // скобки стоят потому что следующий код перенесен на новую строку:
+  <BrowserRouter>
+    <div className='app-wrapper'>
+      <Header />
+      <Navbar />
+      <div className='app-wrapper-content'>
+        <Route path='/profile' render={() => <Profile state={props.state} addPost={props.addPost} />} />
+        <Route path='/dialogs' render={() => <Dialogs state={props.state.dialogsPage} addPost={props.addPost} addMessage={props.addMessage} />} />
+        <Route exact path='/news' component={News} />
+        <Route path='/music' component={Music} />
+        <Route path='/settings' component={Settings} />
       </div>
-    </BrowserRouter>
-  );
-}
+    </div>
+  </BrowserRouter>)
 
 export default App;

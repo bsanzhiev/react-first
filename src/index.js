@@ -6,11 +6,10 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import store from './redux/state';
 
-store.addPost('Best React');
-let rerenderEntireTree = () => {
+let rerenderEntireTree = (state) => {
   ReactDOM.render(
     <BrowserRouter>
-      <App state={store.getState()} />
+      <App state={state} addPost={store.addPost.bind(store)}/>
     </BrowserRouter>, document.getElementById('root'));
 }
 
