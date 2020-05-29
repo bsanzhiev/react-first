@@ -40,8 +40,8 @@ let store = {
   addPost() {
     let newPost = {
       id: 5,
-      message: this._state.profilePage.posts,
-      likes: 0
+      message: this._state.profilePage.posts.message, // рендерится, но нет текста сообщения, добавил .message - изменить здесь!
+      likes: 56
     };
 
     this._state.profilePage.posts.push(newPost);
