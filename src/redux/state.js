@@ -37,10 +37,10 @@ let store = {
     console.log('State was changed');
   },
 
-  addPost() {
+  addPost(postMessage) {
     let newPost = {
       id: 6,
-      message: this._state.profilePage.posts.message, // рендерится, но нет текста сообщения, добавил .message - изменить здесь!
+      message: postMessage, // рендерится, но нет текста сообщения, добавил .message - изменить здесь!
       likes: 56
     };
 
