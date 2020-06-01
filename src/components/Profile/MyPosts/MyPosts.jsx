@@ -10,9 +10,9 @@ const MyPosts = (props) => {
     }
   );
 
-  let newPostElement = React.createRef();
+  let newPostElement = React.createRef(); // здесь не понятно
 
-  let addShitPost = () => {
+  let clickAddPost = () => {
     let text = newPostElement.current.value;
     props.addPost(text);
     newPostElement.current.value = '';
@@ -23,10 +23,10 @@ const MyPosts = (props) => {
     <h3>My Posts</h3>
       <div>
         <div>
-          <textarea ref={newPostElement}></textarea>
+          <textarea ref={newPostElement} ></textarea>
         </div>
         <div>
-          <button onClick={ addShitPost }>Add post</button>
+          <button onClick={ clickAddPost }>Add post</button>
         </div>
       </div>
       <div>
@@ -34,6 +34,8 @@ const MyPosts = (props) => {
       </div>
     </div>
   )
+  // onClick в данном случае вызывает javascript функцию
+  //поэтому в фигурных скобках
 };
 
 export default MyPosts;

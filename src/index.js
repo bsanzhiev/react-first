@@ -6,6 +6,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import store from './redux/state';
 
+//store.addPost('123qwert')
 let rerenderEntireTree = (state) => {
   ReactDOM.render(
     <BrowserRouter>

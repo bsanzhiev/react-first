@@ -39,7 +39,7 @@ let store = {
 
   addPost() {
     let newPost = {
-      id: 5,
+      id: 6,
       message: this._state.profilePage.posts.message, // рендерится, но нет текста сообщения, добавил .message - изменить здесь!
       likes: 56
     };
@@ -63,10 +63,10 @@ let store = {
   },
 
 // этого кода не было. В каком уроке я пропустил?
-  updateNewPostText(newText) {
-    this._state.profilePage.newPostText = newText;
-    this._callSubscriber(this._state);
-  },
+//  updateNewPostText(newText) {
+//    this._state.profilePage.newPostText = newText;
+//    this._callSubscriber(this._state);
+//  },
 
   subscribe(observer) {
     this._callSubscriber = observer;
