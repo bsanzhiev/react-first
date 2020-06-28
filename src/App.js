@@ -16,8 +16,15 @@ const App = (props) => ( // скобки стоят потому что след
       <Header />
       <Navbar />
       <div className='app-wrapper-content'>
-        <Route path='/profile' render={() => <Profile state={props.state} addPost={props.addPost} />} />
-        <Route path='/dialogs' render={() => <Dialogs state={props.state.dialogsPage} addPost={props.addPost} addMessage={props.addMessage} />} />
+
+        <Route path='/profile' render={ () => <Profile 
+        profilePage={props.state.profilePage} 
+        dispatch={props.dispatch} />} />
+
+        <Route path='/dialogs' render={ () => <Dialogs 
+        state={props.state.dialogsPage} 
+        addPost={props.addPost} addMessage={props.addMessage} />} />
+
         <Route exact path='/news' component={News} />
         <Route path='/music' component={Music} />
         <Route path='/settings' component={Settings} />

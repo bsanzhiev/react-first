@@ -7,7 +7,7 @@ let store = {
         { id: 2, message: 'Its my first post!', likes: 17 },
         { id: 3, message: 'I like vaporwave', likes: 22 }
       ],
-      newPostText: 'React is awesome!'
+      newPostText: 'newText'
     },
 
     dialogsPage: {
@@ -28,50 +28,41 @@ let store = {
 
     sidebar: {}
   },
-
-  getState() {
-    return this._state;
-  },
-
   _callSubscriber() {
     console.log('State was changed');
   },
 
-  addPost(postMessage) {
-    let newPost = {
-      id: 6,
-      message: postMessage, // рендерится, но нет текста сообщения, добавил .message - изменить здесь!
-      likes: 56
-    };
-
-    this._state.profilePage.posts.push(newPost);
-
-    this._state.profilePage.newPostText = '';
-
-    this._callSubscriber(this._state);
+  getState() {
+    return this._state;
   },
-
-  addMessage(addNewMessage) {
-    let newMessage = {
-      id: 5,
-      message: addNewMessage
-    };
-
-    this.state.dialogsPage.messages.push(newMessage);
-
-    this._callSubscriber(this._state);
-  },
-
-// этого кода не было. В каком уроке я пропустил?
-//  updateNewPostText(newText) {
-//    this._state.profilePage.newPostText = newText;
-//    this._callSubscriber(this._state);
-//  },
-
   subscribe(observer) {
     this._callSubscriber = observer;
-  }
+  },
 
+  dispatch(action) {
+    if (action.type === 'ADD-POST') {
+      let newPost = {
+        id: 20,
+        message: this._state.profilePage.newPostText,
+        likes: 56
+      };
+      this._state.profilePage.posts.push(newPost);
+      this._state.profilePage.newPostText = '';
+      this._callSubscriber(this._state);
+    } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+      this._state.profilePage.newPostText = action.newText;
+      this._callSubscriber(this._state);
+    } else if (action.type === 'ADD-MESSAGE') {
+      let newMessage = {
+        id: 5,
+        message: this.addNewMessage
+      };
+      this.state.dialogsPage.messages.push(newMessage);
+      this._callSubscriber(this._state);
+    }
+  }
 };
+
+window.store = store;
 
 export default store;
