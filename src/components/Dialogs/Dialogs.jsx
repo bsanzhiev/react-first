@@ -4,26 +4,34 @@ import React from 'react';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
 import s from './Dialogs.module.css';
+import { updateNewMessageBodyCreator, sendMessageCreator } from '../../redux/state';
 
 const Dialogs = (props) => {
 
-  let newMessageElement = React.createRef();
+  let state = props.store.getState().dialogsPage;
 
-  let addMessage = () => {
-    let text = newMessageElement.current.value;
-    props.addMessage(text);
-    newMessageElement.current.value = '';
-  }
-  // eslint-disable-next-line react/jsx-key
-  let dialogsElements = props.state.dialogs.map (
-    // eslint-disable-next-line react/jsx-key
+  let dialogsElements = state.dialogs.map (
     d => <DialogItem name={d.name} id={d.id}/>
   );
 
-  // eslint-disable-next-line react/jsx-key
-  let messagesElements = props.state.messages.map (
+  let messagesElements = state.messages.map (
     m => <Message message={m.message}/>
   );
+
+  let newMessageBody = state.newMessageBody;
+
+  //будем избегать ref
+  //let newMessageElement = React.createRef();
+
+  let clickSendMessage = () => {
+    props.store.dispatch(sendMessageCreator());
+    //newMessageBody.current.value = '';
+  }
+
+  let onNewMessageChange = (e) => {
+    let body = e.target.value;
+    props.store.dispatch(updateNewMessageBodyCreator(body));
+  }
 
   return (
     <div className={s.dialogs}>
@@ -33,12 +41,18 @@ const Dialogs = (props) => {
 
       <div>
         <div className={s.messages}>
-          { messagesElements }
+          <div>
+            <div>{ messagesElements }</div>
+          </div>
         </div>
         <div className={s.sendMessage}>
-        <textarea ref={newMessageElement}></textarea>
-        <button onClick={ addMessage }>Send</button>
-      </div>
+          <textarea 
+            value={newMessageBody} 
+            onChange = {onNewMessageChange}
+            placeholder='Enter your message!'>
+          </textarea>
+          <button onClick={clickSendMessage}>Send</button>
+        </div>
       </div>
     </div>
   )

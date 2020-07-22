@@ -22,8 +22,7 @@ const App = (props) => ( // скобки стоят потому что след
         dispatch={props.dispatch} />} />
 
         <Route path='/dialogs' render={ () => <Dialogs 
-        state={props.state.dialogsPage} 
-        addPost={props.addPost} addMessage={props.addMessage} />} />
+        store={props.store} /> } />
 
         <Route exact path='/news' component={News} />
         <Route path='/music' component={Music} />
