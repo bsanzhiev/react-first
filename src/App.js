@@ -9,7 +9,7 @@ import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
 
-// This is JSX?
+// This is JSX? - Yes
 const App = (props) => ( // скобки стоят потому что следующий код перенесен на новую строку:
   <BrowserRouter>
     <div className='app-wrapper'>

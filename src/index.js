@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import store from './redux/store';
+import store from './redux/redux_store';
 
 let rerenderEntireTree = (state) => {
   ReactDOM.render(
@@ -19,6 +19,12 @@ let rerenderEntireTree = (state) => {
 
 rerenderEntireTree(store.getState());
 
-store.subscribe(rerenderEntireTree);
+//redux не передает измененыый state, поэтому передаем таким образом
+store.subscribe(() => {
+  let state = store.getState()
+  rerenderEntireTree(state);
+})
+
+//store.subscribe(rerenderEntireTree);
 
 serviceWorker.unregister();
