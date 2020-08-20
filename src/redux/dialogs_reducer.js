@@ -24,11 +24,12 @@ export const profileReducer = (state = initialState, action) => {
       state.newMessageBody = action.body;
       return state;
 
-    case SEND_MESSAGE:
+    case SEND_MESSAGE: {
       let body = state.newMessageBody;
       state.newMessageBody = '';
       state.messages.push({id: 5, message: body});
       return state;
+    }
 
     default:
       return state;

@@ -18,10 +18,13 @@ const App = (props) => ( // скобки стоят потому что след
       <div className='app-wrapper-content'>
 
         <Route path='/profile' render={ () => <Profile 
+        // eslint-disable-next-line react/prop-types
         profilePage={props.state.profilePage} 
+        // eslint-disable-next-line react/prop-types
         dispatch={props.dispatch} />} />
 
         <Route path='/dialogs' render={ () => <Dialogs 
+        // eslint-disable-next-line react/prop-types
         store={props.store} /> } />
 
         <Route exact path='/news' component={News} />
