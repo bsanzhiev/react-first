@@ -1,10 +1,10 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 
 import React from 'react';
 import s from './MyPosts.module.css';
 import Post from './Post/Post';
-import { addPostActionCreator, updateNewPostTextActionCreator } 
-  from '../../../redux/profile_reducer';
+import { addPostActionCreator, updateNewPostTextActionCreator } from '../../../redux/profile_reducer';
 
 const MyPosts = (props) => {
 
@@ -16,13 +16,19 @@ const MyPosts = (props) => {
 
   let newPostElement = React.createRef();
 
+  //let onAddPost - название в уроке
   let clickAddPost = () => {
     props.addPost();
+    //props.dispatch(addPostActionCreator());
   };
 
   let onPostChange = () => {
     let text = newPostElement.current.value;
-    props.updateNewPostTextActionCreator(text);
+    props.updateNewPostText(text);
+    //было let text = ...
+    //let action = updateNewPostTextActionCreator(text);
+    //было props.updateNewPostTextActionCreator(text);
+    //props.dispatch(action);
   };
 
   return (
@@ -34,7 +40,7 @@ const MyPosts = (props) => {
           value={props.newPostText}></textarea>
         </div>
         <div>
-          <button onClick={ clickAddPost}>Add post</button>
+          <button onClick={ clickAddPost }>Add post</button>
         </div>
       </div>
       <div>
@@ -42,8 +48,7 @@ const MyPosts = (props) => {
       </div>
     </div>
   )
-  // onClick в данном случае вызывает javascript функцию
-  //поэтому в фигурных скобках
+  // onClick в данном случае вызывает javascript функцию поэтому в фигурных скобках
 };
 
 export default MyPosts;
