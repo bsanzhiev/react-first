@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import './App.css';
@@ -18,13 +19,11 @@ const App = (props) => ( // скобки стоят потому что след
       <div className='app-wrapper-content'>
 
         <Route path='/profile' render={ () => <Profile 
-        // eslint-disable-next-line react/prop-types
+        store={ props.store }
         profilePage={props.state.profilePage} 
-        // eslint-disable-next-line react/prop-types
         dispatch={props.dispatch} />} />
 
         <Route path='/dialogs' render={ () => <Dialogs 
-        // eslint-disable-next-line react/prop-types
         store={props.store} /> } />
 
         <Route exact path='/news' component={News} />

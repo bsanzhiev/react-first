@@ -4,6 +4,7 @@ import sidebarReducer from "./sidebar_reducer";
 
 const { createStore, combineReducers } = require("redux");
 
+// воспринимаем это как стейт
 let redusers = combineReducers({
   profilePage: profileReducer,
   dialogsPage: dialogsReducer,
