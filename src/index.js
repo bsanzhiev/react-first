@@ -19,7 +19,8 @@ let rerenderEntireTree = (state) => {
 
 rerenderEntireTree(store.getState());
 
-//redux не передает измененыый state, поэтому передаем таким образом
+//redux не передает измененыый state,
+//поэтому передаем таким образом
 store.subscribe(() => {
   let state = store.getState()
   rerenderEntireTree(state);
