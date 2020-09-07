@@ -20,13 +20,12 @@ const App = (props) => ( // скобки стоят потому что след
       <div className='app-wrapper-content'>
 
         <Route path='/profile' render={ () => <Profile 
-        store={ props.store }
-        //profilePage={props.state.profilePage} 
-        //dispatch={props.dispatch} 
+        //store={ props.store }
         />} />
 
         <Route path='/dialogs' render={ () => <DialogsContainer 
-        store={props.store} /> } />
+        //store={props.store} 
+        /> } />
 
         <Route exact path='/news' component={News} />
         <Route path='/music' component={Music} />
