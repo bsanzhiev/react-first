@@ -6,6 +6,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import store from './redux/redux_store';
 import StoreContext from './StoreContext';
+import { Provider } from 'react-redux';
 
 //сложил пока сюда
 //state={state} 
@@ -15,9 +16,9 @@ import StoreContext from './StoreContext';
 let rerenderEntireTree = (state) => {
   ReactDOM.render(
     <BrowserRouter>
-      <StoreContext.Provider value={store}>
+      <Provider>
         <App />
-      </StoreContext.Provider>
+      </Provider>
     </BrowserRouter>, document.getElementById('root'));
 }
 

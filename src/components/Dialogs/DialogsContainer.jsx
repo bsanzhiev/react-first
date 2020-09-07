@@ -4,12 +4,11 @@ import React from 'react';
 //import DialogItem from './DialogItem/DialogItem';
 //import Message from './Message/Message';
 //import s from './Dialogs.module.css';
-import { updateNewMessageBodyCreator, sendMessageCreator } 
-  from '../../redux/dialogs_reducer';
+import { updateNewMessageBodyCreator, sendMessageCreator } from '../../redux/dialogs_reducer';
 import Dialogs from './Dialogs';
-import StoreContext from '../../StoreContext';
+import { connect } from 'react-redux';
 
-const DialogsContainer = () => {
+//const DialogsContainer = () => {
 
   //let state = props.store.getState().dialogsPage;
 
@@ -26,22 +25,42 @@ const DialogsContainer = () => {
   //  props.store.dispatch(updateNewMessageBodyCreator(body));
   //}
 
-  return <StoreContext.Consumer> 
-    { (store) => {
-        let state = store.getState().dialogsPage;
-        let clickSendMessage = () => {
-          store.dispatch(sendMessageCreator());
-        };
+  //return <StoreContext.Consumer> 
+  //  { (store) => {
+  //      let state = store.getState().dialogsPage;
+  //      let clickSendMessage = () => {
+  //        store.dispatch(sendMessageCreator());
+  //      };
 
-        let onNewMessageChange = (body) => {
-          store.dispatch(updateNewMessageBodyCreator(body));
-        };
+  //      let onNewMessageChange = (body) => {
+  //        store.dispatch(updateNewMessageBodyCreator(body));
+  //      };
 
-        return <Dialogs 
-          updateNewMessageBody={onNewMessageChange}
-          sendMessage={clickSendMessage}
-          dialogsPage={state}/>}}
-  </StoreContext.Consumer>
-}
+  //      return <Dialogs 
+  //        updateNewMessageBody={onNewMessageChange}
+  //        sendMessage={clickSendMessage}
+  //        dialogsPage={state}/>}}
+  //</StoreContext.Consumer>
+//}
+
+let mapStateToProps = (state) => {
+  return {
+    dialogsPage: state.dialogsPage
+  }
+};
+
+let mapDispatchToProps =(dispatch) => {
+  return {
+    updateNewMessageBody: () => {
+      dispatch(sendMessageCreator());
+    },
+    sendMessage: (body) => {
+      dispatch(updateNewMessageBodyCreator(body));
+    }
+  }
+};
+
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps) (Dialogs);
+
 
 export default DialogsContainer;
