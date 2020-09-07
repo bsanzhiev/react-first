@@ -26,22 +26,21 @@ const DialogsContainer = () => {
   //  props.store.dispatch(updateNewMessageBodyCreator(body));
   //}
 
-  return <StoreContext.Consumer> {
-    (store) => {
-      let state = store.getState().dialogsPage;
-      let clickSendMessage = () => {
-        store.dispatch(sendMessageCreator());
-      };
-      let onNewMessageChange = (body) => {
-        store.dispatch(updateNewMessageBodyCreator(body));
-      };
+  return <StoreContext.Consumer> 
+    { (store) => {
+        let state = store.getState().dialogsPage;
+        let clickSendMessage = () => {
+          store.dispatch(sendMessageCreator());
+        };
 
-      return <Dialogs 
-        updateNewMessageBody={onNewMessageChange}
-        sendMessage={clickSendMessage}
-        dialogsPage={state}/>
-    }
-  }
+        let onNewMessageChange = (body) => {
+          store.dispatch(updateNewMessageBodyCreator(body));
+        };
+
+        return <Dialogs 
+          updateNewMessageBody={onNewMessageChange}
+          sendMessage={clickSendMessage}
+          dialogsPage={state}/>}}
   </StoreContext.Consumer>
 }
 

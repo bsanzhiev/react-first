@@ -20,26 +20,23 @@ const MyPostsContainer = (props) => {
   //};
 
   return (
-    <StoreContext.Consumer> { 
-      (store) => {
-        let state = props.store.getState();
+    <StoreContext.Consumer> 
+      { (store) => {
+        let state = store.getState();
 
         let clickAddPost = () => {
-            props.store.dispatch(addPostActionCreator());
+            store.dispatch(addPostActionCreator());
         };
 
         let onPostChange = (text) => {
           let action = updateNewPostTextActionCreator(text);
-          props.store.dispatch(action);
+          store.dispatch(action);
         };
 
         return <MyPosts updateNewPostText={onPostChange} 
           addPost={clickAddPost} 
           posts={state.profilePage.posts}
-          newPostText={state.profilePage.newPostText} 
-        />
-      }
-    }
+          newPostText={state.profilePage.newPostText} />}}
     </StoreContext.Consumer>
   )
 };
