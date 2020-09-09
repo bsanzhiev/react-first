@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable react/jsx-key */
 import React from 'react';
 import DialogItem from './DialogItem/DialogItem';
 import Message from './Message/Message';
@@ -10,13 +9,10 @@ const Dialogs = (props) => {
   let state = props.dialogsPage;
   //props.store.getState().dialogsPage;
 
-  let dialogsElements = state.dialogs.map (
-    d => <DialogItem name={d.name} id={d.id}/>
-  );
+  let dialogsElements = state.dialogs.map( d => <DialogItem name={d.name} key={d.id} id={d.id} /> );
 
-  let messagesElements = state.messages.map (
-    m => <Message message={m.message}/>
-  );
+  // eslint-disable-next-line react/jsx-key
+  let messagesElements = state.messages.map( m => <Message message={m.message} key={m.id} /> );
 
   let newMessageBody = state.newMessageBody;
 

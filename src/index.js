@@ -13,23 +13,35 @@ import { Provider } from 'react-redux';
 //store={store} 
 //dispatch={store.dispatch.bind(store)}
 
-let rerenderEntireTree = () => {
-  ReactDOM.render(
-    <BrowserRouter>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </BrowserRouter>, document.getElementById('root'));
-}
+ReactDOM.render(
+  <BrowserRouter>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </BrowserRouter>, document.getElementById('root')
+);
 
-rerenderEntireTree(store.getState());
+
+//let rerenderEntireTree = () => {
+//  ReactDOM.render(
+//    <BrowserRouter>
+//      <Provider store={store}>
+//        <App />
+//      </Provider>
+//    </BrowserRouter>, document.getElementById('root'));
+//}
+
+//rerenderEntireTree();
+
+//rerenderEntireTree(store.getState());
 
 //redux не передает измененыый state,
 //поэтому передаем таким образом
-store.subscribe(() => {
-  let state = store.getState()
-  rerenderEntireTree(state);
-})
+
+//store.subscribe(() => {
+//  let state = store.getState()
+//  rerenderEntireTree(state);
+//})
 
 //store.subscribe(rerenderEntireTree);
 
