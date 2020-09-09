@@ -5,7 +5,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import store from './redux/redux_store';
-import StoreContext from './StoreContext';
+//import StoreContext from './StoreContext';
 import { Provider } from 'react-redux';
 
 //сложил пока сюда
@@ -13,10 +13,10 @@ import { Provider } from 'react-redux';
 //store={store} 
 //dispatch={store.dispatch.bind(store)}
 
-let rerenderEntireTree = (state) => {
+let rerenderEntireTree = () => {
   ReactDOM.render(
     <BrowserRouter>
-      <Provider>
+      <Provider store={store}>
         <App />
       </Provider>
     </BrowserRouter>, document.getElementById('root'));
