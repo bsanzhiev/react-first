@@ -21,7 +21,6 @@ let initialState = {
 export const profileReducer = (state = initialState, action) => {
 
   let stateCopy = {...state};
-
   stateCopy.messages = [...state.messages];
 
   switch (action.type) {
