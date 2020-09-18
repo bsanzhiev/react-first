@@ -20,19 +20,20 @@ let initialState = {
 
 export const profileReducer = (state = initialState, action) => {
 
-  let stateCopy = {...state};
-  stateCopy.messages = [...state.messages];
-
   switch (action.type) {
-    case UPDATE_NEW_MESSAGE_BODY: {
-      stateCopy.newMessageBody = action.body;
-      return stateCopy;
-    }
+    case UPDATE_NEW_MESSAGE_BODY:
+      return {
+        ...state,
+        newMessageBody: action.body
+      };
+
     case SEND_MESSAGE: {
-      let body = stateCopy.newMessageBody;
-      stateCopy.newMessageBody = '';
-      stateCopy.messages.push({id: 5, message: body});
-      return stateCopy;
+      let body = state.newMessageBody;
+      return {
+        ...state,
+        newMessageBody: '',
+        messages: [...state.messages, {id: 5, message: body}]
+      };
     }
 
     default:

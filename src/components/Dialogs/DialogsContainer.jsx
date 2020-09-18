@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-key */
-import React from 'react';
+//import React from 'react';
 //import DialogItem from './DialogItem/DialogItem';
 //import Message from './Message/Message';
 //import s from './Dialogs.module.css';
