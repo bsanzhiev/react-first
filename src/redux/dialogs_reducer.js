@@ -22,7 +22,7 @@ export const profileReducer = (state = initialState, action) => {
 
   let stateCopy = {...state};
 
-  stateCopy.messages = [...state.messages];
+  //stateCopy.messages = [...state.messages];
 
   switch (action.type) {
     case UPDATE_NEW_MESSAGE_BODY: {
