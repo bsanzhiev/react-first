@@ -2,8 +2,10 @@
 import React from 'react';
 
 let Users = (props) => {
-  return <div>
+  return (
+    <div>
     {
+      /*https://www.debuggr.io/react-map-of-undefined/ */
       props.users.map( u => <div key={u.id}>
         <span>
           <div>
@@ -28,7 +30,8 @@ let Users = (props) => {
         </span>
       </div>)
     }
-  </div>
+    </div>
+  )
 }  
 
 export default Users;
