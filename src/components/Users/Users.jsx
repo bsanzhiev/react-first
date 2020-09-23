@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 /* eslint-disable react/prop-types */
 import React from 'react';
 
@@ -6,10 +7,11 @@ let Users = (props) => {
     <div>
     {
       /*https://www.debuggr.io/react-map-of-undefined/ */
-      props.users.map( u => <div key={u.id}>
+      props.users.map ( 
+        u => <div key={u.id}>
         <span>
           <div>
-            <img alt='avatar' src={u.photoUrl}/>
+            <img alt='userpic' src={u.photoUrl}/>
           </div>
           <div>
             <button>Follow</button>
