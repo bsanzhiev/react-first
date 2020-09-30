@@ -1,5 +1,6 @@
-/* eslint-disable no-debugger */
-import { followAC, setUsersAC, unfollowAC } from "../../redux/users_reduser";
+// eslint-disable-next-line no-unused-vars
+import React from 'react';
+import { followAC, setUsersAC, unfollowAC } from "../../redux/users_reducer";
 import Users from "./Users";
 import { connect } from "react-redux";
 

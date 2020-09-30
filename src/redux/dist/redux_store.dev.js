@@ -11,7 +11,7 @@ var _dialogs_reducer = _interopRequireDefault(require("./dialogs_reducer"));
 
 var _sidebar_reducer = _interopRequireDefault(require("./sidebar_reducer"));
 
-var _users_reduser = _interopRequireDefault(require("./users_reduser"));
+var _users_reducer = _interopRequireDefault(require("./users_reducer"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
@@ -20,13 +20,13 @@ var _require = require("redux"),
     combineReducers = _require.combineReducers; // воспринимаем это как стейт
 
 
-var redusers = combineReducers({
+var reduсers = combineReducers({
   profilePage: _profile_reducer["default"],
   dialogsPage: _dialogs_reducer["default"],
   sidebar: _sidebar_reducer["default"],
-  usersPage: _users_reduser["default"]
+  usersPage: _users_reducer["default"]
 });
-var store = createStore(redusers);
+var store = createStore(reduсers);
 window.store = store;
 var _default = store;
 exports["default"] = _default;
