@@ -1,14 +1,16 @@
 /* eslint-disable no-debugger */
 import React from "react";
+import PropTypes from "prop-types";
+import styles from "./users.module.css";
 
 let Users = (props) => {
-
-  let users = [
+  if(props.users.length === 0) {
+    props.setUsers([
       {
         id: 1,
-        photoUrl: "../Media/icon-avatar.jpg",
+        photoUrl: "https://s.dou.ua/storage-files/920_keROhy0.jpg",
         followed: true,
-        fullName: "Cyrill",
+        fullName: "Andrew",
         status: "I love React",
         location: {
           country: "England",
@@ -19,7 +21,7 @@ let Users = (props) => {
         id: 2,
         photoUrl: "",
         followed: true,
-        fullName: "Andrew",
+        fullName: "Boris",
         status: "Bekind, for everyone you meet is fighting a harder battle.",
         location: {
           country: "Belgium",
@@ -30,7 +32,7 @@ let Users = (props) => {
         id: 3,
         photoUrl: "",
         followed: false,
-        fullName: "Boris",
+        fullName: "Viktor",
         status:
           "Every heart sings a song, incomplete, until another heart whispers back.",
         location: {
@@ -42,7 +44,7 @@ let Users = (props) => {
         id: 4,
         photoUrl: "",
         followed: false,
-        fullName: "Donald",
+        fullName: "Gennady",
         status:
           "Wise men speak because they have something to say; fools because they have to say something.",
         location: {
@@ -50,18 +52,39 @@ let Users = (props) => {
           city: "Milan",
         },
       },
-    ];
+    ]);
+  }
 
   return (
     <div>
-      {users.map((u) => (
+      {props.users.map((u) => (
         <div key={u.id}>
           <span>
             <div>
-              <img alt="userpic" src={u.photoUrl} />
+              <img
+                alt="userpic"
+                src={u.photoUrl}
+                className={styles.userPhoto}
+              />
             </div>
             <div>
-              <button>Follow</button>
+              {u.followed ? (
+                <button
+                  onClick={() => {
+                    props.unfollow(u.id);
+                  }}
+                >
+                  Unfollow
+                </button>
+              ) : (
+                <button
+                  onClick={() => {
+                    props.follow(u.id);
+                  }}
+                >
+                  Follow
+                </button>
+              )}
             </div>
           </span>
           <span>
@@ -81,6 +104,10 @@ let Users = (props) => {
       ))}
     </div>
   );
+};
+//попытка прописать типы пропсов
+Users.propTypes = {
+  name: PropTypes.string.isRequired,
 };
 
 export default Users;
