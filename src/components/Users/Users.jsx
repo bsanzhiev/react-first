@@ -17,10 +17,11 @@ let Users = (props) => {
       <div>
         {pages.map(p => {
           return <span className={props.currentPage === p && styles.selectedPage}
+            // eslint-disable-next-line no-unused-vars
             onClick={(e) => { props.onPageChanged(p) }} key={p.id}>{p}</span>
         })}
       </div>
-      {this.props.users.map((u) => (
+      {props.users.map((u) => (
         <div key={u.id}>
           <span>
             <div>
@@ -64,9 +65,10 @@ let Users = (props) => {
 
 Users.propTypes = {
   totalUsersCount: PropTypes.number,
-  pageSize: PropTypes.string,
-  currentPage: PropTypes.string,
-  onPageChanged: PropTypes.string,
+  pageSize: PropTypes.number,
+  currentPage: PropTypes.number,
+  onPageChanged: PropTypes.object,
+  users: PropTypes.number,
   follow: PropTypes.bool,
   unfollow: PropTypes.bool
 };

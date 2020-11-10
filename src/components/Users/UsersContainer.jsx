@@ -1,7 +1,53 @@
+import React from 'react';
+import * as axios from "axios";
 import { connect } from "react-redux";
+import PropTypes from "prop-types";
 import { followAC, setCurrentPageAC, setTotalUsersCountAC, setUsersAC, unfollowAC } from "../../redux/users_reducer";
-import UsersAPIComponent from "./UsersAPIComponent";
-import Users from "./UsersAPIComponent";
+import Users from './Users';
+
+class UsersAPIComponent extends React.Component {
+
+  //delete usless constructor 
+  componentDidMount() {
+    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+      .then(response => {
+        this.props.setUsers(response.data.items);
+        this.props.setTotalUsersCount(response.data.totalCount);
+      });
+  };
+
+  onPageChanged = (pageNumber) => {
+    this.props.setCurrentPage(pageNumber);
+    axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
+      .then(response => {
+        this.props.setUsers(response.data.items);
+      });
+  }
+
+  render() {
+    return <Users totalUsersCount={this.props.totalUsersCount}
+      pageSize={this.props.pageSize}
+      currentPage={this.props.currentPage}
+      onPageChanged={this.onPageChanged}
+      unfollow={this.props.unfollow}
+      follow={this.props.follow}
+      users={this.props.users}
+    />
+  }
+};
+
+UsersAPIComponent.propTypes = {
+  setUsers: PropTypes.number,
+  setTotalUsersCount: PropTypes.number,
+  setCurrentPage: PropTypes.number,
+  totalUsersCount: PropTypes.number,
+  pageSize: PropTypes.number,
+  currentPage: PropTypes.number,
+  onPageChanged: PropTypes.object,
+  users: PropTypes.number,
+  follow: PropTypes.bool,
+  unfollow: PropTypes.bool
+};
 
 let mapStateToProps = (state) => {
   return {
