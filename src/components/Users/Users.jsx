@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from "./users.module.css";
 import userPhoto from '../../media/userPhoto.png';
+//import { checkPropTypes } from 'prop-types';
+import PropTypes from 'prop-types';
 
 let Users = (props) => {
 
@@ -59,5 +61,15 @@ let Users = (props) => {
     </div>
   );
 }
+
+Users.propTypes = {
+  totalUsersCount: PropTypes.number,
+  pageSize: PropTypes.string,
+  currentPage: PropTypes.string,
+  onPageChanged: PropTypes.string,
+  follow: PropTypes.bool,
+  unfollow: PropTypes.bool
+};
+// https://ru.reactjs.org/docs/typechecking-with-proptypes.html
 
 export default Users;
