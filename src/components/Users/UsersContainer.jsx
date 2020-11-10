@@ -5,9 +5,8 @@ import PropTypes from "prop-types";
 import { followAC, setCurrentPageAC, setTotalUsersCountAC, setUsersAC, unfollowAC } from "../../redux/users_reducer";
 import Users from './Users';
 
-class UsersAPIComponent extends React.Component {
+class UsersContainer extends React.Component {
 
-  //delete usless constructor 
   componentDidMount() {
     axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
       .then(response => {
@@ -34,19 +33,6 @@ class UsersAPIComponent extends React.Component {
       users={this.props.users}
     />
   }
-};
-
-UsersAPIComponent.propTypes = {
-  setUsers: PropTypes.number,
-  setTotalUsersCount: PropTypes.number,
-  setCurrentPage: PropTypes.number,
-  totalUsersCount: PropTypes.number,
-  pageSize: PropTypes.number,
-  currentPage: PropTypes.number,
-  onPageChanged: PropTypes.object,
-  users: PropTypes.number,
-  follow: PropTypes.bool,
-  unfollow: PropTypes.bool
 };
 
 let mapStateToProps = (state) => {
@@ -82,6 +68,17 @@ let mapDispatchToProps = (dispatch) => {
   };
 };
 
-const UsersContainer = connect(mapStateToProps, mapDispatchToProps)(UsersAPIComponent);
+UsersContainer.propTypes = {
+  setUsers: PropTypes.number,
+  setTotalUsersCount: PropTypes.number,
+  setCurrentPage: PropTypes.number,
+  totalUsersCount: PropTypes.number,
+  pageSize: PropTypes.number,
+  currentPage: PropTypes.number,
+  onPageChanged: PropTypes.object,
+  users: PropTypes.number,
+  follow: PropTypes.bool,
+  unfollow: PropTypes.bool
+};
 
-export default UsersContainer;
+export default connect(mapStateToProps, mapDispatchToProps) (UsersContainer);
