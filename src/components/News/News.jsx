@@ -1,5 +1,5 @@
+/* eslint-disable no-unused-vars */
 import React from 'react';
-//import s from './News.module.css'
 
 const News = (props) => {
     return (
