@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 import styles from "./users.module.css";
-import userPhoto from '../../media/userPhoto.png';
+import userPhoto from "../../media/userPhoto.png";
 //import { checkPropTypes } from 'prop-types';
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types";
+import { NavLink } from "react-router-dom";
 
 let Users = (props) => {
-
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
   let pages = [];
   for (let i = 1; i <= pagesCount; i++) {
@@ -15,33 +15,51 @@ let Users = (props) => {
   return (
     <div>
       <div>
-        {pages.map(p => {
-          return <span className={props.currentPage === p && styles.selectedPage}
-            // eslint-disable-next-line no-unused-vars
-            onClick={(e) => { props.onPageChanged(p) }} key={p.id}>{p}</span>
+        {pages.map((p) => {
+          return (
+            <span
+              className={props.currentPage === p && styles.selectedPage}
+              // eslint-disable-next-line no-unused-vars
+              onClick={(e) => {
+                props.onPageChanged(p);
+              }}
+              key={p.id}
+            >
+              {p}
+            </span>
+          );
         })}
       </div>
       {props.users.map((u) => (
         <div key={u.id}>
           <span>
             <div>
-              <img
-                alt="userpic"
-                src={u.photos.small != null ? u.photos.small : userPhoto}
-                className={styles.userPhoto}
-              />
+              <NavLink to={'/profile/' + u.id}>
+                <img
+                  alt="userpic"
+                  src={u.photos.small != null ? u.photos.small : userPhoto}
+                  className={styles.userPhoto}
+                />
+              </NavLink>
             </div>
             <div>
               {u.followed ? (
                 <button
                   onClick={() => {
                     props.unfollow(u.id);
-                  }}>Unfollow</button>) : (
-                  <button
-                    onClick={() => {
-                      props.follow(u.id);
-                    }}>Follow</button>)
-              }
+                  }}
+                >
+                  Unfollow
+                </button>
+              ) : (
+                <button
+                  onClick={() => {
+                    props.follow(u.id);
+                  }}
+                >
+                  Follow
+                </button>
+              )}
             </div>
           </span>
           <span>
@@ -61,7 +79,7 @@ let Users = (props) => {
       ))}
     </div>
   );
-}
+};
 
 Users.propTypes = {
   totalUsersCount: PropTypes.number,
@@ -70,7 +88,7 @@ Users.propTypes = {
   onPageChanged: PropTypes.object,
   users: PropTypes.number,
   follow: PropTypes.bool,
-  unfollow: PropTypes.bool
+  unfollow: PropTypes.bool,
 };
 // https://ru.reactjs.org/docs/typechecking-with-proptypes.html
 
