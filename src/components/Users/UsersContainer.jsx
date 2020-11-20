@@ -2,7 +2,7 @@ import React from 'react';
 import * as axios from "axios";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import { followAC, setCurrentPageAC, setTotalUsersCountAC, setUsersAC, toggleIsFetchingAC, unfollowAC } from "../../redux/users_reducer";
+import { follow, unfollow, setCurrentPage, setTotalUsersCount, setUsers, toggleIsFetching } from "../../redux/users_reducer";
 import Users from './Users';
 import Preloader from '../common/Preloader/Preloader';
 
@@ -53,30 +53,31 @@ let mapStateToProps = (state) => {
   };
 };
 
+// eslint-disable-next-line no-unused-vars
 let mapDispatchToProps = (dispatch) => {
   return {
     follow: (userId) => {
-      dispatch(followAC(userId));
+      dispatch(follow(userId));
     },
 
     unfollow: (userId) => {
-      dispatch(unfollowAC(userId));
+      dispatch(unfollow(userId));
     },
 
     setUsers: (users) => {
-      dispatch(setUsersAC(users));
+      dispatch(setUsers(users));
     },
 
     setCurrentPage: (pageNumber) => {
-      dispatch(setCurrentPageAC(pageNumber));
+      dispatch(setCurrentPage(pageNumber));
     },
 
     setTotalUsersCount: (totalCount) => {
-      dispatch(setTotalUsersCountAC(totalCount));
+      dispatch(setTotalUsersCount(totalCount));
     },
 
     toggleIsFetching: (isFetching) => {
-      dispatch(toggleIsFetchingAC(isFetching));
+      dispatch(toggleIsFetching(isFetching));
     }
   };
 };
@@ -96,4 +97,4 @@ UsersContainer.propTypes = {
   toggleIsFetching: PropTypes.bool
 };
 
-export default connect(mapStateToProps, mapDispatchToProps) (UsersContainer);
+export default connect(mapStateToProps, { follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching }) (UsersContainer);
