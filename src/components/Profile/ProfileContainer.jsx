@@ -2,13 +2,13 @@ import React from "react";
 import Profile from "./Profile";
 import * as axios from "axios";
 import { connect } from "react-redux";
-import {setUserProfile} from '../../redux/profile_reducer';
+import { setUserProfile } from "../../redux/profile_reducer";
 
 class ProfileContainer extends React.Component {
-
   componentDidMount() {
-    axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`)
-      .then(response => {
+    axios
+      .get(`https://social-network.samuraijs.com/api/1.0/profile/2`)
+      .then((response) => {
         // eslint-disable-next-line react/prop-types
         this.props.setUserProfile(response.data);
       });
@@ -18,12 +18,12 @@ class ProfileContainer extends React.Component {
     return (
       // eslint-disable-next-line react/prop-types
       <Profile {...this.props} profile={this.props.profile} />
-    )
+    );
   }
 }
 
 let mapStateToProps = (state) => ({
-  profile: state.profilePage.profile
+  profile: state.profilePage.profile,
 });
 
-export default connect(mapStateToProps, {setUserProfile}) (ProfileContainer);
+export default connect(mapStateToProps, { setUserProfile })(ProfileContainer);
