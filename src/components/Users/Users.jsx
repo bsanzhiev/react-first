@@ -1,9 +1,11 @@
 import React from "react";
 import styles from "./users.module.css";
+//import * as axios from "axios";
 import userPhoto from "../../media/userPhoto.png";
 //import { checkPropTypes } from 'prop-types';
 import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
+import { usersAPI } from "../../api/api";
 
 let Users = (props) => {
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -34,7 +36,7 @@ let Users = (props) => {
         <div key={u.id}>
           <span>
             <div>
-              <NavLink to={'/profile/' + u.id}>
+              <NavLink to={"/profile/" + u.id}>
                 <img
                   alt="userpic"
                   src={u.photos.small != null ? u.photos.small : userPhoto}
@@ -46,7 +48,7 @@ let Users = (props) => {
               {u.followed ? (
                 <button
                   onClick={() => {
-                    props.unfollow(u.id);
+                    usersAPI.followUsers(u, props.unfollow)
                   }}
                 >
                   Unfollow
@@ -54,7 +56,7 @@ let Users = (props) => {
               ) : (
                 <button
                   onClick={() => {
-                    props.follow(u.id);
+                    usersAPI.unfollowUsers(u, props.follow)
                   }}
                 >
                   Follow

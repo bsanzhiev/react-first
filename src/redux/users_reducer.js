@@ -10,7 +10,7 @@ let initialState = {
   pageSize: 5,
   totalUsersCount: 0,
   currentPage: 1,
-  isFetching: false
+  isFetching: false,
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -59,6 +59,7 @@ const usersReducer = (state = initialState, action) => {
   }
 };
 
+// follow, unfollow - action creators
 export const follow = (userId) => ({ type: FOLLOW, userId });
 
 export const unfollow = (userId) => ({ type: UNFOLLOW, userId });
