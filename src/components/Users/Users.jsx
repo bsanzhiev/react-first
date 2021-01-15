@@ -1,3 +1,4 @@
+/* eslint-disable no-debugger */
 import React from "react";
 import styles from "./users.module.css";
 //import * as axios from "axios";
@@ -47,16 +48,20 @@ let Users = (props) => {
             <div>
               {u.followed ? (
                 <button
+                  disabled={props.followingInProgress}
                   onClick={() => {
-                    usersAPI.followUsers(u, props.unfollow)
+                    props.toggleFollowingProgress(true);
+                    usersAPI.followUsers(u, props.unfollow, props.toggleFollowingProgress)
                   }}
                 >
                   Unfollow
                 </button>
               ) : (
                 <button
+                  disabled={props.followingInProgress}
                   onClick={() => {
-                    usersAPI.unfollowUsers(u, props.follow)
+                    props.toggleFollowingProgress(true);
+                    usersAPI.unfollowUsers(u, props.follow, props.toggleFollowingProgress)
                   }}
                 >
                   Follow
@@ -91,6 +96,8 @@ Users.propTypes = {
   users: PropTypes.number,
   follow: PropTypes.bool,
   unfollow: PropTypes.bool,
+  toggleFollowingProgress: PropTypes.bool,
+  followingInProgress: PropTypes.bool,
 };
 // https://ru.reactjs.org/docs/typechecking-with-proptypes.html
 
