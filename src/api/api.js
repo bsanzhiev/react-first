@@ -18,21 +18,11 @@ export const usersAPI = {
       });
   },
 
-  followUsers(u, unfollow, toggleFollowingProgress) {
-    return instance.delete(`follow/${u.id}`).then((response) => {
-      if (response.data.resultCode == 0) {
-        unfollow(u.id);
-      }
-      toggleFollowingProgress(false);
-    });
+  followUsers(userId) {
+    return instance.post(`follow/${userId}`);
   },
 
-  unfollowUsers(u, follow, toggleFollowingProgress) {
-    return instance.post(`follow/${u.id}`, {}).then((response) => {
-      if (response.data.resultCode == 0) {
-        follow(u.id);
-      }
-      toggleFollowingProgress(false);
-    });
+  unfollowUsers(userId) {
+    return instance.delete(`follow/${userId}`, {});
   },
 };

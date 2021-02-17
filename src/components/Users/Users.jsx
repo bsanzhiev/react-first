@@ -1,12 +1,8 @@
-/* eslint-disable no-debugger */
 import React from "react";
 import styles from "./users.module.css";
-//import * as axios from "axios";
 import userPhoto from "../../media/userPhoto.png";
-//import { checkPropTypes } from 'prop-types';
 import PropTypes from "prop-types";
 import { NavLink } from "react-router-dom";
-import { usersAPI } from "../../api/api";
 
 let Users = (props) => {
   let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
@@ -22,8 +18,7 @@ let Users = (props) => {
           return (
             <span
               className={props.currentPage === p && styles.selectedPage}
-              // eslint-disable-next-line no-unused-vars
-              onClick={(e) => {
+              onClick={(p) => {
                 props.onPageChanged(p);
               }}
               key={p.id}
@@ -48,20 +43,18 @@ let Users = (props) => {
             <div>
               {u.followed ? (
                 <button
-                  disabled={props.followingInProgress}
+                  disabled={props.followingInProgress.some((id) => id === u.id)}
                   onClick={() => {
-                    props.toggleFollowingProgress(true);
-                    usersAPI.followUsers(u, props.unfollow, props.toggleFollowingProgress)
+                    props.unfollowThC(u.id);
                   }}
                 >
                   Unfollow
                 </button>
               ) : (
                 <button
-                  disabled={props.followingInProgress}
+                  //disabled={props.followingInProgress.some(id => id === u.id)}
                   onClick={() => {
-                    props.toggleFollowingProgress(true);
-                    usersAPI.unfollowUsers(u, props.follow, props.toggleFollowingProgress)
+                    props.followThC(u.id);
                   }}
                 >
                   Follow
@@ -94,10 +87,10 @@ Users.propTypes = {
   currentPage: PropTypes.number,
   onPageChanged: PropTypes.object,
   users: PropTypes.number,
-  follow: PropTypes.bool,
-  unfollow: PropTypes.bool,
   toggleFollowingProgress: PropTypes.bool,
   followingInProgress: PropTypes.bool,
+  followThC: PropTypes.object,
+  unfollowThC: PropTypes.func,
 };
 // https://ru.reactjs.org/docs/typechecking-with-proptypes.html
 

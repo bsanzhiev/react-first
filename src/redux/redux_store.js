@@ -3,9 +3,10 @@ import dialogsReducer from "./dialogs_reducer";
 import sidebarReducer from "./sidebar_reducer";
 import usersReducer from "./users_reducer";
 import authReducer from "./auth_reducer";
+import thunkMiddleware from "redux-thunk";
 
 // eslint-disable-next-line no-undef
-const { createStore, combineReducers } = require("redux");
+const { createStore, combineReducers, applyMiddleware } = require("redux");
 
 // воспринимаем это как стейт
 let reduсers = combineReducers({
@@ -13,10 +14,10 @@ let reduсers = combineReducers({
   dialogsPage: dialogsReducer,
   sidebar: sidebarReducer,
   usersPage: usersReducer,
-  auth: authReducer
+  auth: authReducer,
 });
 
-let store = createStore(reduсers);
+let store = createStore(reduсers, applyMiddleware(thunkMiddleware));
 
 window.store = store;
 
