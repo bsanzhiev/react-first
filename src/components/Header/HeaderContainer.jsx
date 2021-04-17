@@ -20,9 +20,9 @@ HeaderContainer.propTypes = {
 //@yandex
 //N0RGUY@Eo$$Z
 // eslint-disable-next-line no-unused-vars
-const MapStateToProps = (state) => ({
+const mapStateToProps = (state) => ({
   isAuth: state.auth.isAuth,
   login: state.auth.login,
 });
 
-export default connect(MapStateToProps, { getAuthUserData })(HeaderContainer);
+export default connect(mapStateToProps, { getAuthUserData })(HeaderContainer);

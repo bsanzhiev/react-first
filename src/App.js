@@ -1,5 +1,8 @@
+// Входная точка в приложение
+
 /* eslint-disable react/prop-types */
 import React from "react";
+/* Подключили роутинг */
 import { BrowserRouter, Route } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
@@ -14,7 +17,8 @@ import LoginPage from "./components/Login/Login";
 
 // This is JSX? - Yes
 const App = () => (
-  // скобки стоят потому что следующий код перенесен на новую строку:
+  /* Cкобки после стрелки стоят потому что код перенесен на новую строку:
+   Подключили роутинг*/
   <BrowserRouter>
     <div className="app-wrapper">
       <HeaderContainer />

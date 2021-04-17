@@ -5,6 +5,7 @@ import sidebarReducer from "./sidebar_reducer";
 let store = {
   _state: {
     profilePage: {
+      profile: [],
       posts: [
         // arrays of Posts Data
         { id: 1, message: "Hi. How are you?", likes: 13 },
@@ -28,7 +29,7 @@ let store = {
         { id: 1, message: "Hi" },
         { id: 2, message: "Yo" },
         { id: 3, message: "Wasap! How your current React progress?" },
-        { id: 4, message: "Very low. Im just started learning)))" },
+        { id: 4, message: "Mid. Im beginner student!" },
       ],
       newMessageBody: "",
     },

@@ -1,30 +1,32 @@
-import React from 'react';
-import s from './ProfileInfo.module.css';
+import React from "react";
+import s from "./ProfileInfo.module.css";
 import PropTypes from "prop-types";
-import Preloader from '../../common/Preloader/Preloader';
+import Preloader from "../../common/Preloader/Preloader";
+import cover from "../../../media/cover.jpg";
 
 const ProfileInfo = (props) => {
   if (!props.profile) {
-    return <Preloader />
+    return <Preloader />;
   }
-
+  /* TypeError: Cannot read property 'photos' of null - 59 урок
+   Сюда не приходят пропсы*/
   return (
     <div>
       <div>
-        <img alt='cover' src='https://www.catsmob.com/post/2012/06/01089/creative_facebook_timeline_covers_023.jpg' width='1200'></img>
+        <img alt="cover" src={cover} width="1200"></img>
       </div>
       <div className={s.descriptionBlock}>
-        <img alt='avatar' src={props.profile.photos.small} ></img>
+        <img alt="avatar" src={props.profile.photos.small}></img>
         <div>{props.profile.aboutMe}</div>
         <div>{props.profile.contacts.twitter}</div>
         <div>{props.profile.lookingForAJob}</div>
         <div>{props.profile.lookingForAJobDescription}</div>
       </div>
-    </div >
-  )
+    </div>
+  );
 };
 
 ProfileInfo.propTypes = {
-  profile: PropTypes.number
+  profile: PropTypes.number,
 };
 export default ProfileInfo;

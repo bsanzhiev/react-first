@@ -9,9 +9,10 @@ let initialState = {
     // arrays of Posts Data
     { id: 1, message: "Hi. How are you?", likes: 13 },
     { id: 2, message: "Its my first post!", likes: 17 },
-    { id: 3, message: "I like vaporwave", likes: 22 },
+    { id: 3, message: "I love Irina!", likes: 22 },
   ],
   newPostText: "newText",
+  /* Профиль пока не проинициилизирован null */
   profile: null,
 };
 
@@ -21,7 +22,7 @@ const profileReducer = (state = initialState, action) => {
       let newPost = {
         id: 14,
         message: state.newPostText,
-        likes: 88,
+        likes: 15,
       };
       let stateCopy = {
         ...state,
@@ -41,6 +42,8 @@ const profileReducer = (state = initialState, action) => {
       };
 
     case SET_USER_PROFILE:
+      /* Возвращается стейт, в котором изменен profile
+      на пришедший из экшена */
       return {
         ...state,
         profile: action.profile,
@@ -52,17 +55,23 @@ const profileReducer = (state = initialState, action) => {
 };
 
 export const addPostActionCreator = () => ({ type: ADD_POST });
+
 export const updateNewPostTextActionCreator = (text) => ({
   type: UPDATE_NEW_POST_TEXT,
   newText: text,
 });
+
+/* Это экшен криейтор - возвращает объект экшен.
+Экшен содержит название экшена и объект profile,
+который нужно поместить в стейт */
 export const setUserProfile = (profile) => ({
   type: SET_USER_PROFILE,
   profile,
 });
+
 export const getUserProfile = (userId) => (dispatch) => {
   usersAPI.getProfile(userId).then((response) => {
-    dispatch(this.props.setUserProfile(response.data));
+    dispatch(setUserProfile(response.data));
   });
 };
 

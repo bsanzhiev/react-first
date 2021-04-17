@@ -8,6 +8,7 @@ import store from "./redux/redux_store";
 //import StoreContext from './StoreContext';
 import { Provider } from "react-redux";
 
+/* Подключили хранилище состояния к приложению */
 ReactDOM.render(
   <BrowserRouter>
     <Provider store={store}>
