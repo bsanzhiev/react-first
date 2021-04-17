@@ -18,7 +18,8 @@ class ProfileContainer extends React.Component {
     if (!userId) {
       userId = 2;
     }
-    /* Вот здесь забыл this.props. 17.04.2021 */
+    /* Вот здесь забыл this.props. 17.04.2021
+    getUserProfile приходит из пропсов! */
     this.props.getUserProfile(userId);
   }
 

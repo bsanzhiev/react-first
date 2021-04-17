@@ -2,7 +2,8 @@ import React from "react";
 import s from "./ProfileInfo.module.css";
 import PropTypes from "prop-types";
 import Preloader from "../../common/Preloader/Preloader";
-import cover from "../../../media/cover.jpg";
+// import cover from "../../../media/cover.jpg";
+import ProfileStatus from "./ProfileStatus";
 
 const ProfileInfo = (props) => {
   if (!props.profile) {
@@ -12,11 +13,12 @@ const ProfileInfo = (props) => {
    Сюда не приходят пропсы*/
   return (
     <div>
-      <div>
+      {/* <div>
         <img alt="cover" src={cover} width="1200"></img>
-      </div>
+      </div> */}
       <div className={s.descriptionBlock}>
         <img alt="avatar" src={props.profile.photos.small}></img>
+        <ProfileStatus status="Hello, World" />
         <div>{props.profile.aboutMe}</div>
         <div>{props.profile.contacts.twitter}</div>
         <div>{props.profile.lookingForAJob}</div>
