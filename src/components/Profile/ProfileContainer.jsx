@@ -5,7 +5,11 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 import Profile from "./Profile";
-import { getUserProfile } from "../../redux/profile_reducer";
+import {
+  getUserProfile,
+  getStatus,
+  updateStatus,
+} from "../../redux/profile_reducer";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { compose } from "redux";
 
@@ -16,18 +20,30 @@ class ProfileContainer extends React.Component {
     let userId = this.props.match.params.userId;
     // хардкод
     if (!userId) {
-      userId = 2;
+      userId = 13057;
     }
     /* Вот здесь забыл this.props. 17.04.2021
     getUserProfile приходит из пропсов! */
     this.props.getUserProfile(userId);
+
+    // Добавили здесь запрос для получения статуса
+    this.props.getStatus(userId);
+
+    this.props.updateStatus(userId);
   }
 
   /* Метод render() возвращает компоненту Profile.
   23.03.2021 ошибка передачи пропсов в компоненту Профиль.*/
 
   render() {
-    return <Profile {...this.props} profile={this.props.profile} />;
+    return (
+      <Profile
+        {...this.props}
+        profile={this.props.profile}
+        status={this.props.status}
+        updateStatus={this.props.updateStatus}
+      />
+    );
   }
 }
 
@@ -38,6 +54,8 @@ class ProfileContainer extends React.Component {
 */
 let mapStateToProps = (state) => ({
   profile: state.profilePage.profile,
+  // для получения статуса из стейта
+  status: state.profilePage.status,
 });
 
 /* connect далее передает эти props в целевую компоненту - 
@@ -49,7 +67,7 @@ mapStateToProps - мы берем из стейта необходимые ко�
 Объект getUserProfile содержит в себе экшенкриейторы*/
 
 export default compose(
-  connect(mapStateToProps, { getUserProfile }),
+  connect(mapStateToProps, { getUserProfile, getStatus, updateStatus }),
   withRouter,
   withAuthRedirect
 )(ProfileContainer);
@@ -68,5 +86,8 @@ ProfileContainer.propTypes = {
   match: PropTypes.object,
   profile: PropTypes.object,
   getUserProfile: PropTypes.object,
+  getStatus: PropTypes.object,
+  updateStatus: PropTypes.object,
+  status: PropTypes.string,
   isAuth: PropTypes.bool,
 };

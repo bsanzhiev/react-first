@@ -3,6 +3,7 @@ import s from "./ProfileInfo.module.css";
 import PropTypes from "prop-types";
 import Preloader from "../../common/Preloader/Preloader";
 // import cover from "../../../media/cover.jpg";
+import userPhoto from "../../../media/userPhoto.png";
 import ProfileStatus from "./ProfileStatus";
 
 const ProfileInfo = (props) => {
@@ -17,8 +18,15 @@ const ProfileInfo = (props) => {
         <img alt="cover" src={cover} width="1200"></img>
       </div> */}
       <div className={s.descriptionBlock}>
-        <img alt="avatar" src={props.profile.photos.small}></img>
-        <ProfileStatus status="Hello, World" />
+        <img
+          alt="avatar"
+          src={props.profile.photos.small || userPhoto}
+          className={s.userPhoto}
+        ></img>
+        <ProfileStatus
+          status={props.status}
+          updateStatus={props.updateStatus}
+        />
         <div>{props.profile.aboutMe}</div>
         <div>{props.profile.contacts.twitter}</div>
         <div>{props.profile.lookingForAJob}</div>
@@ -30,5 +38,7 @@ const ProfileInfo = (props) => {
 
 ProfileInfo.propTypes = {
   profile: PropTypes.number,
+  status: PropTypes.string,
+  updateStatus: PropTypes.object,
 };
 export default ProfileInfo;
