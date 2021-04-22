@@ -4,6 +4,7 @@ import sidebarReducer from "./sidebar_reducer";
 import usersReducer from "./users_reducer";
 import authReducer from "./auth_reducer";
 import thunkMiddleware from "redux-thunk";
+import { reducer as formReducer } from "redux-form";
 
 // eslint-disable-next-line no-undef
 const { createStore, combineReducers, applyMiddleware } = require("redux");
@@ -15,6 +16,7 @@ let reduсers = combineReducers({
   sidebar: sidebarReducer,
   usersPage: usersReducer,
   auth: authReducer,
+  form: formReducer,
 });
 
 let store = createStore(reduсers, applyMiddleware(thunkMiddleware));

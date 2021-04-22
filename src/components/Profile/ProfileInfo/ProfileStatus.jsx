@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import PropTypes from "prop-types";
 import s from "./ProfileInfo.module.css";
@@ -26,6 +27,14 @@ class ProfileStatus extends React.Component {
       status: e.currentTarget.value,
     });
   };
+
+  componentDidUpdate(prevProps, prevState) {
+    if (prevProps.status !== this.props.status) {
+      this.setState({
+        status: this.props.status,
+      });
+    }
+  }
 
   render() {
     return (
