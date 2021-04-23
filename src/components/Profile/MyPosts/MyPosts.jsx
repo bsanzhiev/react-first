@@ -1,49 +1,53 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 
-import React from 'react';
-import s from './MyPosts.module.css';
-import Post from './Post/Post';
+import React from "react";
+import { Field, reduxForm } from "redux-form";
+import s from "./MyPosts.module.css";
+import Post from "./Post/Post";
 
 const MyPosts = (props) => {
-
-  let postsElements = props.posts.map (
-    p => {
-      return <Post message={p.message} key={p.id} likes={p.likes} />;
-    }
-  );
+  let postsElements = props.posts.map((p) => {
+    return <Post message={p.message} key={p.id} likes={p.likes} />;
+  });
 
   let newPostElement = React.createRef();
 
-  //let onAddPost - название в уроке
-  let clickAddPost = () => {
-    props.addPost();
-    //props.dispatch(addPostActionCreator());
-  };
-
-  let onPostChange = () => {
-    let text = newPostElement.current.value;
-    props.updateNewPostText(text);
+  //let onAddPost - название в видео
+  let clickAddPost = (values) => {
+    props.addPost(values.newPostText);
   };
 
   return (
     <div className={s.postBlock}>
-    <h3>My Posts</h3>
+      <h3>My Posts</h3>
       <div>
-        <div>
-          <textarea onChange={ onPostChange } ref={newPostElement} 
-          value={props.newPostText}></textarea>
-        </div>
-        <div>
-          <button onClick={ clickAddPost }>Add post</button>
-        </div>
+        <AddNewPostFormRedux onSubmit={clickAddPost} />
       </div>
-      <div>
-        { postsElements }
-      </div>
+      <div>{postsElements}</div>
     </div>
-  )
-  // onClick в данном случае вызывает javascript функцию поэтому в фигурных скобках
+  );
 };
+
+const AddNewPostForm = (props) => {
+  return (
+    <form onSubmit={props.handleSubmit}>
+      <div>
+        <Field
+          component="textarea"
+          name="newPostText"
+          placeholder="Whats happen wiht you?"
+        />
+      </div>
+      <div>
+        <button>Add post!</button>
+      </div>
+    </form>
+  );
+};
+
+const AddNewPostFormRedux = reduxForm({ form: "RrofileAddPostForm" })(
+  AddNewPostForm
+);
 
 export default MyPosts;

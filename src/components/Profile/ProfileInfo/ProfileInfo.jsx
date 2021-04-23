@@ -41,4 +41,5 @@ ProfileInfo.propTypes = {
   status: PropTypes.string,
   updateStatus: PropTypes.object,
 };
+
 export default ProfileInfo;
