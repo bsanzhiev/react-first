@@ -4,15 +4,6 @@ import React from "react";
 import { Field, reduxForm } from "redux-form";
 import PropTypes from "prop-types";
 
-const Login = () => {
-  return (
-    <div>
-      <h1> Login </h1>
-      <LoginReduxForm />
-    </div>
-  );
-};
-
 const LoginForm = (props) => {
   return (
     <form onSubmit={props.handleSubmit}>
@@ -30,6 +21,18 @@ const LoginForm = (props) => {
         <button>Login</button>
       </div>
     </form>
+  );
+};
+
+const Login = () => {
+  const submit = (values) => {
+    console.log(values);
+  };
+  return (
+    <div>
+      <h1> Login </h1>
+      <LoginReduxForm onSubmit={submit} />
+    </div>
   );
 };
 

@@ -6,7 +6,6 @@ import authReducer from "./auth_reducer";
 import thunkMiddleware from "redux-thunk";
 import { reducer as formReducer } from "redux-form";
 
-// eslint-disable-next-line no-undef
 const { createStore, combineReducers, applyMiddleware } = require("redux");
 
 // воспринимаем это как стейт
