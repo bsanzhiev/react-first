@@ -2,6 +2,7 @@
 
 import React from "react";
 import { Field, reduxForm } from "redux-form";
+import style from "../common/FormControls/FormControls.module.css";
 import PropTypes from "prop-types";
 import { Input } from "../common/FormControls/FormControls";
 import { required } from "../../utils/form_validators/validators";
@@ -33,6 +34,9 @@ const LoginForm = (props) => {
         <Field name="rememberMe" type="checkbox" component={Input} /> Remember
         me
       </div>
+      {props.error && (
+        <div className={style.formCommonError}>{props.error}</div>
+      )}
       <div>
         <button>Login</button>
       </div>
@@ -68,6 +72,7 @@ export default connect(mapStateToProps, { login })(Login);
 LoginForm.propTypes = {
   handleSubmit: PropTypes.object,
   login: PropTypes.object,
+  error: PropTypes.object,
 };
 
 Login.propTypes = {

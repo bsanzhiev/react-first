@@ -20,7 +20,7 @@ class ProfileContainer extends React.Component {
     let userId = this.props.match.params.userId;
     // хардкод
     if (!userId) {
-      userId = 13057;
+      userId = this.props.authorizedUserId;
     }
     /* Вот здесь забыл this.props. 17.04.2021
     getUserProfile приходит из пропсов! */
@@ -56,6 +56,9 @@ let mapStateToProps = (state) => ({
   profile: state.profilePage.profile,
   // для получения статуса из стейта
   status: state.profilePage.status,
+  // получаем userId авторизованного пользователя
+  authorizedUserId: state.auth.userId,
+  isAuth: state.auth.isAuth,
 });
 
 /* connect далее передает эти props в целевую компоненту - 
@@ -90,4 +93,5 @@ ProfileContainer.propTypes = {
   updateStatus: PropTypes.object,
   status: PropTypes.string,
   isAuth: PropTypes.bool,
+  authorizedUserId: PropTypes.object,
 };
