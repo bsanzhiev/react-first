@@ -43,7 +43,7 @@ const AddNewPostForm = (props) => {
         <Field
           component={Textarea}
           name="newPostText"
-          placeholder="Whats happen wiht you?"
+          placeholder="Whats happen with you?"
           validate={[required, maxLength10]}
         />
       </div>

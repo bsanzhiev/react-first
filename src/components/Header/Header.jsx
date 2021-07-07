@@ -9,7 +9,13 @@ const Header = (props) => {
     <header className={s.header}>
       <img alt="logo" src={logo}></img>
       <div className={s.loginBlock}>
-        {props.isAuth ? props.login : <NavLink to={"/login"}>Login</NavLink>}
+        {props.isAuth ? (
+          <div>
+            {props.login} <button onClick={props.logout}>Log Out</button>
+          </div>
+        ) : (
+          <NavLink to={"/login"}>Login</NavLink>
+        )}
       </div>
     </header>
   );
@@ -18,6 +24,7 @@ const Header = (props) => {
 Header.propTypes = {
   isAuth: PropTypes.bool,
   login: PropTypes.string,
+  logout: PropTypes.object,
 };
 
 export default Header;
