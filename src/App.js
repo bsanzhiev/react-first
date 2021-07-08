@@ -3,7 +3,7 @@
 /* eslint-disable react/prop-types */
 import React from "react";
 /* Подключили роутинг */
-import { BrowserRouter, Route } from "react-router-dom";
+import { Route, withRouter } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 import News from "./components/News/News";
@@ -14,30 +14,49 @@ import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import LoginPage from "./components/Login/Login";
+import { Component } from "react";
+import { connect } from "react-redux";
+import { initializeApp } from "../src/redux/app_reducer";
+import { compose } from "redux";
+import Preloader from "./components/common/Preloader/Preloader";
 
-// This is JSX? - Yes
-const App = () => (
-  /* Cкобки после стрелки стоят потому что код перенесен на новую строку:
-   Подключили роутинг*/
-  <BrowserRouter>
-    <div className="app-wrapper">
-      <HeaderContainer />
-      <Navbar />
-      <div className="app-wrapper-content">
-        <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
+class App extends Component {
+  componentDidMount() {
+    this.props.initializeApp();
+  }
 
-        <Route path="/dialogs" render={() => <DialogsContainer />} />
+  render() {
+    if (!this.props.initialized) {
+      return <Preloader />;
+    }
 
-        <Route path="/users" render={() => <UsersContainer />} />
+    return (
+      <div className="app-wrapper">
+        <HeaderContainer />
+        <Navbar />
+        <div className="app-wrapper-content">
+          <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
 
-        <Route path="/login" render={() => <LoginPage />} />
+          <Route path="/dialogs" render={() => <DialogsContainer />} />
 
-        <Route exact path="/news" component={News} />
-        <Route path="/music" component={Music} />
-        <Route path="/settings" component={Settings} />
+          <Route path="/users" render={() => <UsersContainer />} />
+
+          <Route path="/login" render={() => <LoginPage />} />
+
+          <Route exact path="/news" component={News} />
+          <Route path="/music" component={Music} />
+          <Route path="/settings" component={Settings} />
+        </div>
       </div>
-    </div>
-  </BrowserRouter>
-);
+    );
+  }
+}
 
-export default App;
+const mapStateToProps = (state) => ({
+  initialized: state.app.initialized,
+});
+
+export default compose(
+  withRouter,
+  connect(mapStateToProps, { initializeApp })
+)(App);
