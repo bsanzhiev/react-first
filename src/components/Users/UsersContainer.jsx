@@ -14,10 +14,18 @@ import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
 import { compose } from "redux";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+import {
+  getCurrentPage,
+  getFollowingInProgress,
+  getIsFetching,
+  getPageSize,
+  getTotalUsersCount,
+  getUsers,
+} from "../../redux/users_selectors";
 
 class UsersContainer extends React.Component {
   componentDidMount() {
-    this.props.getUsersThC(this.props.currentPage, this.props.pageSize);
+    this.props.getUsersThC(this.props.page, this.props.pageSize);
   }
 
   onPageChanged = (pageNumber) => {
@@ -31,7 +39,7 @@ class UsersContainer extends React.Component {
         <Users
           totalUsersCount={this.props.totalUsersCount}
           pageSize={this.props.pageSize}
-          currentPage={this.props.currentPage}
+          page={this.props.page}
           onPageChanged={this.onPageChanged}
           users={this.props.users}
           followingInProgress={this.props.followingInProgress}
@@ -44,7 +52,7 @@ class UsersContainer extends React.Component {
   }
 }
 
-let mapStateToProps = (state) => {
+/* let mapStateToProps = (state) => {
   return {
     users: state.usersPage.users,
     pageSize: state.usersPage.pageSize,
@@ -52,6 +60,17 @@ let mapStateToProps = (state) => {
     currentPage: state.usersPage.currentPage,
     isFetching: state.usersPage.isFetching,
     followingInProgress: state.usersPage.followingInProgress,
+  };
+}; */
+
+let mapStateToProps = (state) => {
+  return {
+    users: getUsers(state),
+    pageSize: getPageSize(state),
+    totalUsersCount: getTotalUsersCount(state),
+    currentPage: getCurrentPage(state),
+    isFetching: getIsFetching(state),
+    followingInProgress: getFollowingInProgress(state),
   };
 };
 
@@ -80,7 +99,7 @@ UsersContainer.propTypes = {
   setCurrentPage: PropTypes.number,
   totalUsersCount: PropTypes.number,
   pageSize: PropTypes.number,
-  currentPage: PropTypes.number,
+  page: PropTypes.number,
   onPageChanged: PropTypes.object,
   users: PropTypes.object,
   followAC: PropTypes.func,

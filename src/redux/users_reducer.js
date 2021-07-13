@@ -11,9 +11,9 @@ const TOGGLE_IS_FOLLOWING_PROGRESS = "TOGGLE_IS_FOLLOWING_PROGRESS";
 // Initial state
 let initialState = {
   users: [],
-  pageSize: 5,
+  pageSize: 10,
   totalUsersCount: 0,
-  currentPage: 1,
+  page: 1,
   isFetching: true,
   followingInProgress: [],
 };
@@ -109,10 +109,14 @@ export const toggleFollowingProgressAC = (isFetching, userId) => ({
 });
 
 // thunk creator
-export const getUsersThC = (currentPage, pageSize) => {
+export const getUsersThC = (page, pageSize) => {
   return (dispatch) => {
     dispatch(toggleIsFetchingAC(true));
-    usersAPI.getUsers(currentPage, pageSize).then((data) => {
+
+    //не подсвечивется текущая страница
+    dispatch(setCurrentPageAC(page));
+
+    usersAPI.getUsers(page, pageSize).then((data) => {
       dispatch(toggleIsFetchingAC(false));
       dispatch(setUsersAC(data.items));
       dispatch(setTotalUsersCountAC(data.totalCount));
