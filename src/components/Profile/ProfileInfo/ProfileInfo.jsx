@@ -4,7 +4,8 @@ import PropTypes from "prop-types";
 import Preloader from "../../common/Preloader/Preloader";
 // import cover from "../../../media/cover.jpg";
 import userPhoto from "../../../media/userPhoto.png";
-import ProfileStatus from "./ProfileStatus";
+//import ProfileStatus from "./ProfileStatus";
+import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 const ProfileInfo = (props) => {
   if (!props.profile) {
@@ -23,7 +24,7 @@ const ProfileInfo = (props) => {
           src={props.profile.photos.small || userPhoto}
           className={s.userPhoto}
         ></img>
-        <ProfileStatus
+        <ProfileStatusWithHooks
           status={props.status}
           updateStatus={props.updateStatus}
         />
