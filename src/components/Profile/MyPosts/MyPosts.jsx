@@ -1,6 +1,3 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable react/prop-types */
-
 import React from "react";
 import { Field, reduxForm } from "redux-form";
 import s from "./MyPosts.module.css";
@@ -10,14 +7,21 @@ import {
   required,
 } from "../../../utils/form_validators/validators.js";
 import { Textarea } from "../../common/FormControls/FormControls";
+import PropTypes from "prop-types";
 
 const maxLength10 = maxLengthCreator(10);
 
-const MyPosts = (props) => {
+// eslint-disable-next-line react/display-name
+const MyPosts = React.memo((props) => {
+  /*shouldComponentUpdate(nextProps, nextState) {
+    return nextProps != this.props || nextState != this.state;
+  }*/
+
   let postsElements = props.posts.map((p) => {
     return <Post message={p.message} key={p.id} likes={p.likes} />;
   });
 
+  // eslint-disable-next-line no-unused-vars
   let newPostElement = React.createRef();
 
   //let onAddPost - название в видео
@@ -34,7 +38,7 @@ const MyPosts = (props) => {
       <div>{postsElements}</div>
     </div>
   );
-};
+});
 
 const AddNewPostForm = (props) => {
   return (
@@ -54,8 +58,17 @@ const AddNewPostForm = (props) => {
   );
 };
 
-const AddNewPostFormRedux = reduxForm({ form: "RrofileAddPostForm" })(
+const AddNewPostFormRedux = reduxForm({ form: "ProfileAddPostForm" })(
   AddNewPostForm
 );
+
+MyPosts.propTypes = {
+  posts: PropTypes.object,
+  addPost: PropTypes.object,
+};
+
+AddNewPostForm.propTypes = {
+  handleSubmit: PropTypes.object,
+};
 
 export default MyPosts;
