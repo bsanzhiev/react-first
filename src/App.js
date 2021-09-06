@@ -1,8 +1,8 @@
 // Входная точка в приложение
 
-/* eslint-disable react/prop-types */
 import React from "react";
-/* Подключили роутинг */
+import PropTypes from "prop-types";
+// Подключили роутинг
 import { Route, withRouter } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
@@ -55,6 +55,11 @@ class App extends Component {
 const mapStateToProps = (state) => ({
   initialized: state.app.initialized,
 });
+
+App.propTypes = {
+  initializeApp: PropTypes.object,
+  initialized: PropTypes.bool,
+};
 
 export default compose(
   withRouter,
