@@ -25,11 +25,13 @@ import {
 
 class UsersContainer extends React.Component {
   componentDidMount() {
-    this.props.getUsersThC(this.props.page, this.props.pageSize);
+    const { currentPage, pageSize } = this.props;
+    this.props.getUsersThC(currentPage, pageSize);
   }
 
   onPageChanged = (pageNumber) => {
-    this.props.getUsersThC(pageNumber, this.props.pageSize);
+    const { pageSize } = this.props;
+    this.props.getUsersThC(pageNumber, pageSize);
   };
 
   render() {
@@ -100,6 +102,7 @@ UsersContainer.propTypes = {
   totalUsersCount: PropTypes.number,
   pageSize: PropTypes.number,
   page: PropTypes.number,
+  currentPage: PropTypes.number,
   onPageChanged: PropTypes.object,
   users: PropTypes.object,
   followAC: PropTypes.func,
