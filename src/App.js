@@ -1,6 +1,8 @@
 // Входная точка в приложение
-
 import React from "react";
+import { BrowserRouter } from "react-router-dom";
+import { Provider } from "react-redux";
+import store from "./redux/redux_store";
 import PropTypes from "prop-types";
 // Подключили роутинг
 import { Route, withRouter } from "react-router-dom";
@@ -31,23 +33,30 @@ class App extends Component {
     }
 
     return (
-      <div className="app-wrapper">
-        <HeaderContainer />
-        <Navbar />
-        <div className="app-wrapper-content">
-          <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
+      <BrowserRouter>
+        <Provider store={store}>
+          <div className="app-wrapper">
+            <HeaderContainer />
+            <Navbar />
+            <div className="app-wrapper-content">
+              <Route
+                path="/profile/:userId?"
+                render={() => <ProfileContainer />}
+              />
 
-          <Route path="/dialogs" render={() => <DialogsContainer />} />
+              <Route path="/dialogs" render={() => <DialogsContainer />} />
 
-          <Route path="/users" render={() => <UsersContainer />} />
+              <Route path="/users" render={() => <UsersContainer />} />
 
-          <Route path="/login" render={() => <LoginPage />} />
+              <Route path="/login" render={() => <LoginPage />} />
 
-          <Route exact path="/news" component={News} />
-          <Route path="/music" component={Music} />
-          <Route path="/settings" component={Settings} />
-        </div>
-      </div>
+              <Route exact path="/news" component={News} />
+              <Route path="/music" component={Music} />
+              <Route path="/settings" component={Settings} />
+            </div>
+          </div>
+        </Provider>
+      </BrowserRouter>
     );
   }
 }
@@ -61,7 +70,24 @@ App.propTypes = {
   initialized: PropTypes.bool,
 };
 
-export default compose(
+/* export default compose(
+  withRouter,
+  connect(mapStateToProps, { initializeApp })
+)(App); */
+
+let AppContainer = compose(
   withRouter,
   connect(mapStateToProps, { initializeApp })
 )(App);
+
+const WrappedApp = () => {
+  return (
+    <BrowserRouter>
+      <Provider store={store}>
+        <AppContainer />
+      </Provider>
+    </BrowserRouter>
+  );
+};
+
+export default WrappedApp;

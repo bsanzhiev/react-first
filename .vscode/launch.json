@@ -10,6 +10,19 @@
       "name": "Launch Chrome against localhost",
       "url": "http://localhost:8080",
       "webRoot": "${workspaceFolder}"
+    },
+    {
+      "type": "node",
+      "name": "vscode-jest-tests",
+      "request": "launch",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "neverOpen",
+      "disableOptimisticBPs": true,
+      "runtimeExecutable": "${workspaceFolder}/node_modules/.bin/jest",
+      "protocol": "inspector",
+      "cwd": "${workspaceFolder}",
+      "program": "${workspaceFolder}/jest.jestCommandLine",
+      "args": [":", "\"yarn test\"", "test", "--runInBand", "--watchAll=false"]
     }
   ]
 }
