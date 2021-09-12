@@ -13,12 +13,6 @@ let Users = ({
 }) => {
   return (
     <div>
-      <Paginator
-        currentPage={currentPage}
-        totalUsersCount={totalUsersCount}
-        pageSize={pageSize}
-        onPageChanged={onPageChanged}
-      />
       <div>
         {users.map((u) => (
           <User
@@ -29,6 +23,14 @@ let Users = ({
             unfollowThC={props.unfollowThC}
           />
         ))}
+      </div>
+      <div>
+        <Paginator
+          currentPage={currentPage}
+          totalItemsCount={totalUsersCount}
+          pageSize={pageSize}
+          onPageChanged={onPageChanged}
+        />
       </div>
     </div>
   );
