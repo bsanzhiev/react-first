@@ -8,7 +8,7 @@ let Paginator = ({
   totalItemsCount,
   pageSize,
   onPageChanged,
-  portionSize = 25,
+  portionSize = 15,
 }) => {
   let pagesCount = Math.ceil(totalItemsCount / pageSize);
   let pages = [];

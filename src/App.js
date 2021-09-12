@@ -1,5 +1,5 @@
 // Входная точка в приложение
-import React from "react";
+import React, { Suspense } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./redux/redux_store";
@@ -11,9 +11,9 @@ import Navbar from "./components/Navbar/Navbar";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import DialogsContainer from "./components/Dialogs/DialogsContainer";
+//import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
-import ProfileContainer from "./components/Profile/ProfileContainer";
+//import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import LoginPage from "./components/Login/Login";
 import { Component } from "react";
@@ -21,6 +21,14 @@ import { connect } from "react-redux";
 import { initializeApp } from "../src/redux/app_reducer";
 import { compose } from "redux";
 import Preloader from "./components/common/Preloader/Preloader";
+
+const DialogsContainer = React.lazy(() =>
+  import("./components/Dialogs/DialogsContainer")
+);
+
+const ProfileContainer = React.lazy(() =>
+  import("./components/Profile/ProfileContainer")
+);
 
 class App extends Component {
   componentDidMount() {
@@ -39,17 +47,16 @@ class App extends Component {
             <HeaderContainer />
             <Navbar />
             <div className="app-wrapper-content">
-              <Route
-                path="/profile/:userId?"
-                render={() => <ProfileContainer />}
-              />
-
-              <Route path="/dialogs" render={() => <DialogsContainer />} />
-
-              <Route path="/users" render={() => <UsersContainer />} />
+              <Suspense fallback={<Preloader />}>
+                <Route
+                  path="/profile/:userId?"
+                  render={() => <ProfileContainer />}
+                />
+                <Route path="/dialogs" render={() => <DialogsContainer />} />
+                <Route path="/users" render={() => <UsersContainer />} />
+              </Suspense>
 
               <Route path="/login" render={() => <LoginPage />} />
-
               <Route exact path="/news" component={News} />
               <Route path="/music" component={Music} />
               <Route path="/settings" component={Settings} />
