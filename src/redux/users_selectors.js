@@ -1,3 +1,7 @@
+/*
+Селекторы берут только необходимые данные из стейта.
+*/
+
 export const getUsers = (state) => {
   return state.usersPage.users;
 };

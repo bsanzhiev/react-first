@@ -1,19 +1,20 @@
 import React from "react";
 import { connect } from "react-redux";
+import { compose } from "redux";
 import PropTypes from "prop-types";
-import {
-  // action creators:
-  setCurrentPageAC,
-  toggleFollowingProgressAC,
-  // thunk creators:
-  followThC,
-  unfollowThC,
-  getUsersThC,
-} from "../../redux/users_reducer";
+
 import Users from "./Users";
 import Preloader from "../common/Preloader/Preloader";
-import { compose } from "redux";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+
+import {
+  setCurrentPageAC,
+  toggleFollowingProgressAC,
+  followThC,
+  unfollowThC,
+  requestUsers,
+} from "../../redux/users_reducer";
+
 import {
   getCurrentPage,
   getFollowingInProgress,
@@ -26,12 +27,12 @@ import {
 class UsersContainer extends React.Component {
   componentDidMount() {
     const { currentPage, pageSize } = this.props;
-    this.props.getUsersThC(currentPage, pageSize);
+    this.props.requestUsers(currentPage, pageSize);
   }
 
   onPageChanged = (pageNumber) => {
     const { pageSize } = this.props;
-    this.props.getUsersThC(pageNumber, pageSize);
+    this.props.requestUsers(pageNumber, pageSize);
   };
 
   render() {
@@ -54,17 +55,6 @@ class UsersContainer extends React.Component {
   }
 }
 
-/* let mapStateToProps = (state) => {
-  return {
-    users: state.usersPage.users,
-    pageSize: state.usersPage.pageSize,
-    totalUsersCount: state.usersPage.totalUsersCount,
-    currentPage: state.usersPage.currentPage,
-    isFetching: state.usersPage.isFetching,
-    followingInProgress: state.usersPage.followingInProgress,
-  };
-}; */
-
 let mapStateToProps = (state) => {
   return {
     users: getUsers(state),
@@ -76,20 +66,12 @@ let mapStateToProps = (state) => {
   };
 };
 
-// export default connect(mapStateToProps, {
-//   setCurrentPageAC,
-//   toggleFollowingProgressAC,
-//   getUsersThC,
-//   followThC,
-//   unfollowThC,
-// })(UsersContainer);
-
 export default compose(
   withAuthRedirect,
   connect(mapStateToProps, {
     setCurrentPageAC,
     toggleFollowingProgressAC,
-    getUsersThC,
+    requestUsers,
     followThC,
     unfollowThC,
   })
@@ -103,7 +85,7 @@ UsersContainer.propTypes = {
   pageSize: PropTypes.number,
   page: PropTypes.number,
   currentPage: PropTypes.number,
-  onPageChanged: PropTypes.object,
+  onPageChanged: PropTypes.func,
   users: PropTypes.object,
   followAC: PropTypes.func,
   unfollowAC: PropTypes.func,
@@ -111,7 +93,8 @@ UsersContainer.propTypes = {
   toggleIsFetching: PropTypes.bool,
   toggleFollowingProgressAC: PropTypes.array,
   followingInProgress: PropTypes.array,
-  getUsersThC: PropTypes.object,
+  requestUsers: PropTypes.object,
+  getUsers: PropTypes.func,
   followThC: PropTypes.func,
   unfollowThC: PropTypes.func,
 };

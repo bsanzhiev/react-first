@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import cn from "classnames";
 
 let Paginator = ({
-  currentPage,
+  currentPage = 1,
   totalItemsCount,
   pageSize,
   onPageChanged,
@@ -29,7 +29,7 @@ let Paginator = ({
             setPortionNumber(portionNumber - 1);
           }}
         >
-          PERV
+          PREV
         </button>
       )}
       {pages
@@ -44,7 +44,7 @@ let Paginator = ({
                 styles.pageNumber
               )}
               key={p}
-              onClick={(p) => {
+              onClick={() => {
                 onPageChanged(p);
               }}
             >

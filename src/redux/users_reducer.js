@@ -12,6 +12,7 @@ const TOGGLE_IS_FOLLOWING_PROGRESS = "TOGGLE_IS_FOLLOWING_PROGRESS";
 // Initial state
 let initialState = {
   users: [],
+  currentPage: 1,
   pageSize: 10,
   totalUsersCount: 0,
   page: 1,
@@ -69,46 +70,36 @@ const usersReducer = (state = initialState, action) => {
   }
 };
 
-// action creators
 export const followAC = (userId) => ({ type: FOLLOW, userId });
 
-// action creator
 export const unfollowAC = (userId) => ({ type: UNFOLLOW, userId });
 
-// action creator
 export const setUsersAC = (users) => ({ type: SET_USERS, users });
 
-// action creator
 export const setCurrentPageAC = (currentPage) => ({
   type: SET_CURRENT_PAGE,
   currentPage,
 });
 
-// action creator
 export const setTotalUsersCountAC = (totalUsersCount) => ({
   type: SET_TOTAL_USERS_COUNT,
   count: totalUsersCount,
 });
 
-// action creator
 export const toggleIsFetchingAC = (isFetching) => ({
   type: TOGGLE_IS_FETCHING,
   isFetching,
 });
 
-// action creator
 export const toggleFollowingProgressAC = (isFetching, userId) => ({
   type: TOGGLE_IS_FOLLOWING_PROGRESS,
   isFetching,
   userId,
 });
 
-// thunk creator
-export const getUsersThC = (page, pageSize) => {
+export const requestUsers = (page, pageSize) => {
   return async (dispatch) => {
     dispatch(toggleIsFetchingAC(true));
-
-    //не подсвечивется текущая страница
     dispatch(setCurrentPageAC(page));
 
     let data = await usersAPI.getUsers(page, pageSize);
@@ -126,16 +117,14 @@ export const followUnfollowFlow = async (
 ) => {
   dispatch(toggleFollowingProgressAC(true, userId));
   let response = await apiMethod(userId);
-  if (response.data.resultCode == 0) {
+  if (response.data.resultCode === 0) {
     dispatch(actionCreator(userId));
   }
   dispatch(toggleFollowingProgressAC(false, userId));
 };
 
-// thunk creator for follow user
 export const followThC = (userId) => {
   return async (dispatch) => {
-    //let apiMethod = usersAPI.follow.bind(usersAPI);
     followUnfollowFlow(
       dispatch,
       userId,
@@ -145,7 +134,6 @@ export const followThC = (userId) => {
   };
 };
 
-// thunk creator for unfollow user
 export const unfollowThC = (userId) => {
   return async (dispatch) => {
     //let apiMethod = usersAPI.unfollow.bind(usersAPI);
