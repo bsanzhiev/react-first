@@ -61,5 +61,20 @@
     "lint-staged": "^10.5.1",
     "prettier": "2.1.2",
     "react-test-renderer": "^16.14.0"
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": ".eslintrc.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bsanzhiev/react-first.git"
+  },
+  "keywords": [
+    "reactjs"
+  ],
+  "author": "bsanzhiev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bsanzhiev/react-first/issues"
+  },
+  "homepage": "https://github.com/bsanzhiev/react-first#readme"
 }
