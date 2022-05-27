@@ -9,7 +9,7 @@ let initialState = {
     // arrays of Posts Data
     { id: 1, message: "Hi. How are you?", likes: 13 },
     { id: 2, message: "Its my first post!", likes: 17 },
-    { id: 3, message: "I love Irina!", likes: 22 },
+    { id: 3, message: "I love React!", likes: 22 },
   ],
   /* Профиль пока не проинициилизирован null */
   profile: null,

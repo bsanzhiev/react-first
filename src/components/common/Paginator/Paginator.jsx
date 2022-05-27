@@ -4,11 +4,11 @@ import PropTypes from "prop-types";
 import cn from "classnames";
 
 let Paginator = ({
-  currentPage = 1,
+  currentPage,
   totalItemsCount,
   pageSize,
   onPageChanged,
-  portionSize = 15,
+  portionSize,
 }) => {
   let pagesCount = Math.ceil(totalItemsCount / pageSize);
   let pages = [];
@@ -44,7 +44,8 @@ let Paginator = ({
                 styles.pageNumber
               )}
               key={p}
-              onClick={() => {
+              // eslint-disable-next-line no-unused-vars
+              onClick={(e) => {
                 onPageChanged(p);
               }}
             >

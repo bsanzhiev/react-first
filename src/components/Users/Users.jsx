@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Paginator from "../common/Paginator/Paginator";
 import User from "./User";
+// import styles from "./users.module.css";
 
 let Users = ({
   currentPage,
@@ -30,6 +31,7 @@ let Users = ({
           totalItemsCount={totalUsersCount}
           pageSize={pageSize}
           onPageChanged={onPageChanged}
+          portionSize={10}
         />
       </div>
     </div>
