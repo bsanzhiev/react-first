@@ -12,7 +12,7 @@ import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 //import DialogsContainer from "./components/Dialogs/DialogsContainer";
-import UsersContainer from "./components/Users/UsersContainer";
+//import UsersContainer from "./components/Users/UsersContainer";
 //import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import LoginPage from "./components/Login/Login";
@@ -28,6 +28,10 @@ const DialogsContainer = React.lazy(() =>
 
 const ProfileContainer = React.lazy(() =>
   import("./components/Profile/ProfileContainer")
+);
+
+const UsersContainer = React.lazy(() =>
+  import("./components/Users/UsersContainer")
 );
 
 class App extends Component {
@@ -47,7 +51,7 @@ class App extends Component {
             <HeaderContainer />
             <Navbar />
             <div className="app-wrapper-content">
-              <Suspense fallback={<Preloader />}>
+              <Suspense fallback={<div>Loading...</div>}>
                 <Route
                   path="/profile/:userId?"
                   render={() => <ProfileContainer />}
