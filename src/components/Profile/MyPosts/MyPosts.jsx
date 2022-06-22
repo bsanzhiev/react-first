@@ -9,7 +9,7 @@ import {
 import { Textarea } from "../../common/FormControls/FormControls";
 import PropTypes from "prop-types";
 
-const maxLength10 = maxLengthCreator(10);
+const maxLength140 = maxLengthCreator(140);
 
 // eslint-disable-next-line react/display-name
 const MyPosts = React.memo((props) => {
@@ -48,7 +48,7 @@ const AddNewPostForm = (props) => {
           component={Textarea}
           name="newPostText"
           placeholder="Whats happen with you?"
-          validate={[required, maxLength10]}
+          validate={[required, maxLength140]}
         />
       </div>
       <div>
