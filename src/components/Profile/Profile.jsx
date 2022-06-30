@@ -8,8 +8,10 @@ const Profile = (props) => {
     <div>
       <ProfileInfo
         profile={props.profile}
+        isOwner={props.isOwner}
         status={props.status}
         updateStatus={props.updateStatus}
+        savePhoto={props.savePhoto}
       />
       <MyPostsContainer />
     </div>
@@ -17,9 +19,11 @@ const Profile = (props) => {
 };
 
 Profile.propTypes = {
+  isOwner: PropTypes.bool,
   profile: PropTypes.object,
   status: PropTypes.string,
   updateStatus: PropTypes.object,
+  savePhoto: PropTypes.object,
 };
 
 export default Profile;

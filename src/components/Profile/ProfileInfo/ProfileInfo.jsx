@@ -13,6 +13,13 @@ const ProfileInfo = (props) => {
   }
   /* TypeError: Cannot read property 'photos' of null - 59 урок
    Сюда не приходят пропсы*/
+
+  const onUserPhotoSelected = (e) => {
+    if (e.target.files.length) {
+      props.savePhoto(e.target.files[0]);
+    }
+  };
+
   return (
     <div>
       {/* <div>
@@ -24,6 +31,12 @@ const ProfileInfo = (props) => {
           src={props.profile.photos.small || userPhoto}
           className={s.userPhoto}
         ></img>
+        <div className={s.choosePhoto}>
+          {props.isOwner && (
+            <input type="file" onChange={onUserPhotoSelected} />
+          )}
+        </div>
+
         <ProfileStatusWithHooks
           status={props.status}
           updateStatus={props.updateStatus}
@@ -38,6 +51,8 @@ const ProfileInfo = (props) => {
 };
 
 ProfileInfo.propTypes = {
+  savePhoto: PropTypes.object,
+  isOwner: PropTypes.bool,
   profile: PropTypes.number,
   status: PropTypes.string,
   updateStatus: PropTypes.object,
