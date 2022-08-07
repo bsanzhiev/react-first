@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./FormControls.module.css";
 import PropTypes from "prop-types";
+import { Field } from "redux-form";
 
 // eslint-disable-next-line no-unused-vars
 export const FormControl = ({ input, meta, child, ...props }) => {
@@ -32,6 +33,25 @@ export const Input = (props) => {
     </FormControl>
   );
 };
+
+export const createField = (
+  placeholder,
+  name,
+  validators,
+  props = {},
+  text = ""
+) => (
+  <div>
+    <Field
+      placeholder={placeholder}
+      name={name}
+      validate={validators}
+      component={Input}
+      {...props}
+    />{" "}
+    {text}
+  </div>
+);
 
 FormControl.propTypes = {
   input: PropTypes.string,
