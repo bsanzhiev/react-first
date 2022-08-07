@@ -37,6 +37,21 @@ const ProfileInfo = (props) => {
           )}
         </div>
 
+        <ProfileData profile={props.profile} />
+
+        <div>
+          <b>Contacts: </b>
+          {Object.keys(props.profile.contacts).map((key) => {
+            return (
+              <Contacts
+                key={key}
+                contactTitle={key}
+                contactValue={props.profile.contacts[key]}
+              />
+            );
+          })}
+        </div>
+
         <ProfileStatusWithHooks
           status={props.status}
           updateStatus={props.updateStatus}
@@ -50,10 +65,55 @@ const ProfileInfo = (props) => {
   );
 };
 
+const ProfileData = ({ profile }) => {
+  return (
+    <div>
+      <div>
+        <b>Full name: </b>
+        {profile.fullName}
+      </div>
+
+      <div>
+        <b>Looking for a job: </b>
+        {profile.lookingForAJob ? "yes" : "no"}
+      </div>
+
+      {profile.lookingForAJob && (
+        <div>
+          <b>My skills: </b>
+          {profile.lookingForAJobDescription}
+        </div>
+      )}
+
+      <div>
+        <b>About me:</b>
+        {profile.aboutMe}
+      </div>
+    </div>
+  );
+};
+
+const Contacts = ({ contactTitle, contactValue }) => {
+  return (
+    <div className={s.contacts}>
+      <b>{contactTitle}:</b> {contactValue}
+    </div>
+  );
+};
+
+ProfileData.propTypes = {
+  profile: PropTypes.object,
+};
+
+Contacts.propTypes = {
+  contactTitle: PropTypes.object,
+  contactValue: PropTypes.object,
+};
+
 ProfileInfo.propTypes = {
   savePhoto: PropTypes.object,
   isOwner: PropTypes.bool,
-  profile: PropTypes.number,
+  profile: PropTypes.object,
   status: PropTypes.string,
   updateStatus: PropTypes.object,
 };
