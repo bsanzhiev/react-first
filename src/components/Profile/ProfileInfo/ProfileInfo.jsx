@@ -23,6 +23,12 @@ const ProfileInfo = (props) => {
     }
   };
 
+  const onSubmit = (formData) => {
+    //props.login(formData.email, formData.password, formData.rememberMe);
+    props.saveProfile(formData);
+    setEditMode(false);
+  };
+
   return (
     <div>
       {/* <div>
@@ -48,7 +54,11 @@ const ProfileInfo = (props) => {
         />
 
         {editMode ? (
-          <ProfileDataFormReduxForm profile={props.profile} />
+          <ProfileDataFormReduxForm
+            profile={props.profile}
+            initialValues={props.profile}
+            onSubmit={onSubmit}
+          />
         ) : (
           <ProfileData
             goToEditMode={() => {
@@ -134,6 +144,7 @@ ProfileInfo.propTypes = {
   profile: PropTypes.object,
   status: PropTypes.string,
   updateStatus: PropTypes.object,
+  saveProfile: PropTypes.object,
 };
 
 export default ProfileInfo;

@@ -1,12 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { createField, Input } from "../../common/FormControls/FormControls";
+import {
+  createField,
+  Input,
+  Textarea,
+} from "../../common/FormControls/FormControls";
 import { Contacts } from "./ProfileInfo";
 import { reduxForm } from "redux-form";
 
-const ProfileDataForm = ({ profile }) => {
+const ProfileDataForm = ({ profile, handleSubmit }) => {
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div>
         <button onClick={() => {}}>Save</button>
       </div>
@@ -17,20 +21,22 @@ const ProfileDataForm = ({ profile }) => {
 
       <div>
         <b>Looking for a job: </b>
-        {profile.lookingForAJob ? "yes" : "no"}
         {createField("", "lookingForAJob", [], Input, { type: "checkbox" })}
       </div>
 
-      {profile.lookingForAJob && (
-        <div>
-          <b>My skills: </b>
-          {profile.lookingForAJobDescription}
-        </div>
-      )}
+      <div>
+        <b>My professional skills: </b>
+        {createField(
+          "My professional skills",
+          "lookingForAJobDescription",
+          [],
+          Textarea
+        )}
+      </div>
 
       <div>
         <b>About me:</b>
-        {profile.aboutMe}
+        {createField("Hit some word about yourself!", "aboutMe", [], Textarea)}
       </div>
 
       <div>
@@ -57,4 +63,5 @@ export default ProfileDataFormReduxForm;
 
 ProfileDataForm.propTypes = {
   profile: PropTypes.object,
+  handleSubmit: PropTypes.object,
 };

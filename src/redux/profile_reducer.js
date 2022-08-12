@@ -112,4 +112,13 @@ export const savePhoto = (file) => async (dispatch) => {
   }
 };
 
+// обновить профиль
+export const saveProfile = (profile) => async (dispatch, getState) => {
+  const userId = getState().auth.userId;
+  const response = await profileAPI.saveProfile(profile);
+  if (response.data.resultCode === 0) {
+    dispatch(getUserProfile(userId));
+  }
+};
+
 export default profileReducer;

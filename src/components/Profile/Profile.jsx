@@ -12,6 +12,7 @@ const Profile = (props) => {
         status={props.status}
         updateStatus={props.updateStatus}
         savePhoto={props.savePhoto}
+        saveProfile={props.saveProfile}
       />
       <MyPostsContainer />
     </div>
@@ -24,6 +25,7 @@ Profile.propTypes = {
   status: PropTypes.string,
   updateStatus: PropTypes.object,
   savePhoto: PropTypes.object,
+  saveProfile: PropTypes.object,
 };
 
 export default Profile;
