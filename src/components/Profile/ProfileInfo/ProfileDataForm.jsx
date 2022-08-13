@@ -1,19 +1,22 @@
 import React from "react";
 import PropTypes from "prop-types";
+import s from "./ProfileInfo.module.css";
+import ers from "../../common/FormControls/FormControls.module.css";
 import {
   createField,
   Input,
   Textarea,
 } from "../../common/FormControls/FormControls";
-import { Contacts } from "./ProfileInfo";
+//import { Contacts } from "./ProfileInfo";
 import { reduxForm } from "redux-form";
 
-const ProfileDataForm = ({ profile, handleSubmit }) => {
+const ProfileDataForm = ({ profile, handleSubmit, error }) => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
         <button onClick={() => {}}>Save</button>
       </div>
+      {error && <div className={ers.formCommonError}>{error}</div>}
       <div>
         <b>Full name: </b>
         {createField("Full name", "fullName", [], Input)}
@@ -43,12 +46,19 @@ const ProfileDataForm = ({ profile, handleSubmit }) => {
         <b>Contacts: </b>
         {Object.keys(profile.contacts).map((key) => {
           return (
-            <Contacts
+            <div className={s.contact} key={key}>
+              <b>
+                {key}: {createField(key, "contacts." + key, [], Input)}
+              </b>
+            </div>
+          );
+          /*  {<Contacts
+
               key={key}
               contactTitle={key}
               contactValue={profile.contacts[key]}
             />
-          );
+          ;} */
         })}
       </div>
     </form>
@@ -64,4 +74,5 @@ export default ProfileDataFormReduxForm;
 ProfileDataForm.propTypes = {
   profile: PropTypes.object,
   handleSubmit: PropTypes.object,
+  error: PropTypes.object,
 };

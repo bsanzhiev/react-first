@@ -25,8 +25,9 @@ const ProfileInfo = (props) => {
 
   const onSubmit = (formData) => {
     //props.login(formData.email, formData.password, formData.rememberMe);
-    props.saveProfile(formData);
-    setEditMode(false);
+    props.saveProfile(formData).then(() => {
+      setEditMode(false);
+    });
   };
 
   return (
@@ -91,15 +92,13 @@ const ProfileData = ({ profile, isOwner, goToEditMode }) => {
         {profile.lookingForAJob ? "yes" : "no"}
       </div>
 
-      {profile.lookingForAJob && (
-        <div>
-          <b>My skills: </b>
-          {profile.lookingForAJobDescription}
-        </div>
-      )}
+      <div>
+        <b>My skills: </b>
+        {profile.lookingForAJobDescription}
+      </div>
 
       <div>
-        <b>About me:</b>
+        <b>About me: </b>
         {profile.aboutMe}
       </div>
 
